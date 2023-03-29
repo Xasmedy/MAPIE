@@ -42,7 +42,11 @@ public final class ChatIcons {
             1 -> String - content name
             2 -> String - content name ui
              */
-            final String[] values = scanner.nextLine().split("[=|]");
+            final String nextLine = scanner.nextLine();
+            // I ignore comments lines.
+            if (nextLine.trim().startsWith("#")) continue;
+
+            final String[] values = nextLine.split("[=|]");
             final int unicode = Integer.parseInt(values[0]);
             final String name = values[1];
             // For now, I don't need ui names.
