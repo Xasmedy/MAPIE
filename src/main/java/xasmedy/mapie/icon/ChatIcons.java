@@ -13,8 +13,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * It loads all the mindustry <a href="https://github.com/Anuken/Mindustry/blob/master/core/assets/icons/icons.properties">icons</a+>.<br>
  * This class is Thread-Safe.
  */
-public final class IconsManager {
+public final class ChatIcons {
 
+    // TODO Make this a singleton.
     private static final String FILE_NAME = "icons.properties";
     private static final String ICONS_FILE_LINK = "https://raw.githubusercontent.com/Anuken/Mindustry/master/core/assets/icons/" + FILE_NAME;
     private static final AtomicBoolean IS_LOADED = new AtomicBoolean(false);
@@ -46,6 +47,10 @@ public final class IconsManager {
 
     public static int getIcon(String content) {
         return UNICODE_ICONS.get(content);
+    }
+
+    public static char getIconChar(String content) {
+        return (char) getIcon(content);
     }
 
     public static String getIconStr(String content) {
@@ -90,7 +95,7 @@ public final class IconsManager {
      */
     public static void loadFromProprieties() {
 
-        try (final InputStream input = IconsManager.class.getResourceAsStream("/" + FILE_NAME)) {
+        try (final InputStream input = ChatIcons.class.getResourceAsStream("/" + FILE_NAME)) {
             if (input == null) throw new IllegalStateException("Proprieties file is not present.");
             setIconsFromSource(input);
         } catch (IOException e) {
