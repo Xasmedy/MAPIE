@@ -8,7 +8,6 @@
 
 package xasmedy.mapie.menu.button;
 
-import xasmedy.mapie.menu.Menu;
 import java.util.ArrayList;
 
 public class Button {

@@ -10,6 +10,7 @@ package xasmedy.mapie.menu;
 
 import mindustry.gen.Player;
 import xasmedy.mapie.menu.builder.MenuTemplate;
+import xasmedy.mapie.menu.close.ClosureType;
 import java.util.ArrayList;
 
 /**
@@ -18,11 +19,13 @@ import java.util.ArrayList;
 public class Menu {
 
     private final ArrayList<MenuTemplate> previous = new ArrayList<>(3); // I think it's hard to have more than 3 sub-menus.
+    private final MenusRegister menusRegister;
     private final Player player;
     private MenuTemplate current;
 
-    Menu(Player owner, MenuTemplate current) {
-        this.player = owner;
+    Menu(MenusRegister register, Player player, MenuTemplate current) {
+        this.menusRegister = register;
+        this.player = player;
         this.current = current;
     }
 
@@ -44,21 +47,21 @@ public class Menu {
     }
 
     public void displayMyself() {
-        // TODO Low level call.
+        menusRegister.displayTemplate(getPlayer(), current);
     }
 
     public void displayPrev() {
         current = previous.remove(previous.size() - 1);
-        // TODO Low level call.
+        menusRegister.displayTemplate(getPlayer(), current);
     }
 
     public void displayMenu(MenuTemplate template) {
         previous.add(current);
         current = template;
-        // TODO Low level call.
+        menusRegister.displayTemplate(getPlayer(), template);
     }
 
     public void close() {
-        // TODO Low level call.
+        menusRegister.close(getPlayer(), ClosureType.BY_BUTTON);
     }
 }

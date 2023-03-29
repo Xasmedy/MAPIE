@@ -10,7 +10,6 @@ package xasmedy.mapie.menu.builder;
 
 import xasmedy.mapie.menu.button.Button;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -59,12 +58,6 @@ public final class MenuButtons {
         this.buttons.add(new ArrayList<>(List.of(buttons))); // Adds at the last position.
     }
 
-    public Button[] getAll() {
-        return buttons.stream()
-                .flatMap(Collection::stream)
-                .toArray(Button[]::new);
-    }
-
     public Button get(int index) throws NoSuchElementException {
 
         for (int x = 0, y = 0; x < this.buttons.size(); x++) {
@@ -110,5 +103,16 @@ public final class MenuButtons {
     public Button[] removeColumn(int column) {
         if (howManyColumns() <= column) throw new IndexOutOfBoundsException("Column: " + column + ", Size: " + buttons.size());
         return this.buttons.remove(column).toArray(Button[]::new);
+    }
+
+    public String[][] asString() {
+        final String[][] options = new String[buttons.size()][];
+        for (int i = 0; i < buttons.size(); i++) {
+            options[i] = buttons.get(i)
+                    .stream()
+                    .map(Button::getLabel)
+                    .toArray(String[]::new);
+        }
+        return options;
     }
 }

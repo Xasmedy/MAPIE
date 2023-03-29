@@ -10,6 +10,8 @@ package xasmedy.mapie.menu;
 
 import arc.Events;
 import mindustry.game.EventType;
+import mindustry.gen.Call;
+import mindustry.gen.Groups;
 import mindustry.gen.Player;
 import mindustry.ui.Menus;
 import xasmedy.mapie.menu.builder.MenuTemplate;
@@ -51,6 +53,10 @@ public class MenusRegister {
         else button.getListeners().forEach(listener -> listener.action(menu, button));
     }
 
+    void displayTemplate(Player player, MenuTemplate template) {
+        Call.menu(player.con(), template.getId(), template.getTitle(), template.getMessage(), template.getButtons().asString());
+    }
+
     void close(Player player, ClosureType type) {
         final Menu menu = playerMenus.remove(player);
         menu.getCurrentTemplate()
@@ -65,5 +71,13 @@ public class MenusRegister {
 
     public MenuTemplate newChildMenu(int fatherId) {
         return new MenuTemplate(fatherId);
+    }
+
+    public void displayMenu(Player player, MenuTemplate template) {
+        playerMenus.put(player, new Menu(this, player, template));
+    }
+
+    public void displayMenu(MenuTemplate template) {
+        for (Player player : Groups.player) displayMenu(player, template);
     }
 }
