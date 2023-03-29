@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'xasmedy'
+version 'v0.5'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://www.jitpack.io' }
+}
+
+ext {
+    mindustry = 'v142'
+}
+
+dependencies {
+    implementation "com.github.Anuken.Mindustry:core:${mindustry}"
+}
