@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Project init.&#10;- Added an IconManager.&#10;- Working towards an abstraction of Menus.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenusRegister.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/builder/MenuButtons.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/builder/MenuTemplate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/button/Button.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/button/ButtonTriggerListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/close/CloseListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/close/ClosureType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/icon/IconsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/icon/ChatIcons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Button.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menu.java" afterDir="false" />
-    </list>
+    <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Project init.&#10;- Added an IconManager.&#10;- Working towards an abstraction of Menus." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,12 +20,7 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="MAPIE" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -55,6 +37,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -74,7 +61,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/home/xasmedy/IdeaProjects/MAPIE",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -86,7 +73,13 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="git merge master" />
+      <command value="git pull" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.ChatIcons">
     <configuration name="ChatIcons" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="xasmedy.mapie.icon.ChatIcons" />
       <module name="MAPIE.main" />
@@ -99,6 +92,28 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="MAPIE [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="MindustryAPIExtension" />
@@ -115,6 +130,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ChatIcons" />
+        <item itemvalue="Gradle.MAPIE [build]" />
         <item itemvalue="Application.ChatIcons" />
       </list>
     </recent_temporary>
