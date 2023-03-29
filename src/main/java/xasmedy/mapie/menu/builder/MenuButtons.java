@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@SuppressWarnings("unused")
 public final class MenuButtons {
 
     private final ArrayList<ArrayList<Button>> buttons = new ArrayList<>();

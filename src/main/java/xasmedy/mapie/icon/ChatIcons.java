@@ -23,17 +23,21 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public final class ChatIcons {
 
-    // TODO Make this a singleton.
+    private static final AtomicBoolean INSTANCIED = new AtomicBoolean(false);
     private static final String FILE_NAME = "icons.properties";
     private static final String ICONS_FILE_LINK = "https://raw.githubusercontent.com/Anuken/Mindustry/master/core/assets/icons/" + FILE_NAME;
-    private static final AtomicBoolean IS_LOADED = new AtomicBoolean(false);
-    private static final ObjectMap<String, String> STRING_ICONS = new ObjectMap<>();
-    private static final ObjectIntMap<String> UNICODE_ICONS = new ObjectIntMap<>();
+    private final AtomicBoolean areIconsLoaded = new AtomicBoolean(false);
+    private final ObjectMap<String, String> STRING_ICONS = new ObjectMap<>();
+    private final ObjectIntMap<String> UNICODE_ICONS = new ObjectIntMap<>();
 
-    private static void setIconsFromSource(InputStream source) {
+    public ChatIcons() {
+        if (INSTANCIED.getAndSet(true)) throw new IllegalStateException("Cannot instantiate singleton.");
+    }
+
+    private void setIconsFromSource(InputStream source) {
 
         // I set it at the moment it is getting loaded.
-        if (IS_LOADED.getAndSet(true)) return;
+        if (areIconsLoaded.getAndSet(true)) return;
 
         final Scanner scanner = new Scanner(source);
         while (scanner.hasNextLine()) {
@@ -57,15 +61,15 @@ public final class ChatIcons {
         }
     }
 
-    public static int getIcon(String content) {
+    public int getIcon(String content) {
         return UNICODE_ICONS.get(content);
     }
 
-    public static char getIconChar(String content) {
+    public char getIconChar(String content) {
         return (char) getIcon(content);
     }
 
-    public static String getIconStr(String content) {
+    public String getIconStr(String content) {
         return STRING_ICONS.get(content);
     }
 
@@ -73,7 +77,7 @@ public final class ChatIcons {
      * Asks the icon.properties from GitHub.
      * @throws IOException In case of a problem with the connection.
      */
-    public static void loadFromGithub() throws IOException {
+    public void loadFromGithub() throws IOException {
 
         final URL url;
         try {
@@ -96,7 +100,7 @@ public final class ChatIcons {
      * @param iconProprieties The file path.
      * @throws IOException In case of a problem with the stream.
      */
-    public static void loadFromFile(String iconProprieties) throws IOException {
+    public void loadFromFile(String iconProprieties) throws IOException {
         final FileInputStream input = new FileInputStream(iconProprieties);
         setIconsFromSource(input);
         input.close();
@@ -105,7 +109,7 @@ public final class ChatIcons {
     /**
      * Loads the icon.properties from the internal file.
      */
-    public static void loadFromProprieties() {
+    public void loadFromProprieties() {
 
         try (final InputStream input = ChatIcons.class.getResourceAsStream("/" + FILE_NAME)) {
             if (input == null) throw new IllegalStateException("Proprieties file is not present.");
@@ -119,7 +123,7 @@ public final class ChatIcons {
     /**
      * Tries to load the icon.properties from GitHub, if it fails it loads it from the internal file.
      */
-    public static void loadReliable() {
+    public void loadReliable() {
         try {
             loadFromGithub();
         } catch (IOException ignored) {

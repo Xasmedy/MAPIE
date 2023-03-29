@@ -18,8 +18,11 @@ import xasmedy.mapie.menu.builder.MenuTemplate;
 import xasmedy.mapie.menu.button.Button;
 import xasmedy.mapie.menu.close.ClosureType;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MenusRegister {
+
+    private static final AtomicBoolean INSTANCIED = new AtomicBoolean(false);
 
     /**
      * Only one menu per player. (I don't see a reason to have more than one)
@@ -27,6 +30,9 @@ public class MenusRegister {
     private final HashMap<Player, Menu> playerMenus = new HashMap<>();
 
     public MenusRegister() {
+
+        if (INSTANCIED.getAndSet(true)) throw new IllegalStateException("Cannot instantiate singleton.");
+
         Events.on(EventType.PlayerLeave.class, e -> {
             if (!playerMenus.containsKey(e.player)) return;
             close(e.player, ClosureType.PLAYER_LEAVE);
