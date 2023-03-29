@@ -81,6 +81,7 @@ public class MenusRegister {
 
     public void displayMenu(Player player, MenuTemplate template) {
         playerMenus.put(player, new Menu(this, player, template));
+        displayTemplate(player, template);
     }
 
     public void displayMenu(MenuTemplate template) {
