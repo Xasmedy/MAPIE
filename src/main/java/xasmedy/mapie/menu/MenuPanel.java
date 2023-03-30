@@ -25,7 +25,7 @@ public final class MenuPanel {
      * The first element is always the father menu.
      */
     private final ArrayList<MenuTemplate> topMenus = new ArrayList<>(3); // I think it's hard to have more than 3 sub-menus.
-    private final MenusExecutor menusRegister;
+    private final Menus menus;
     private final Player player;
     private MenuTemplate current;
     /**
@@ -34,8 +34,8 @@ public final class MenuPanel {
      */
     private MenuTemplate currentCopy;
 
-    MenuPanel(MenusExecutor register, Player player, MenuTemplate current) {
-        this.menusRegister = register;
+    MenuPanel(Menus menus, Player player, MenuTemplate current) {
+        this.menus = menus;
         this.player = player;
         this.current = current;
         setCopyIfEnabled();
@@ -99,7 +99,7 @@ public final class MenuPanel {
 
     public void close() {
         // TODO Player choose? (not the best)
-        menusRegister.closeActiveMenu(this, ClosureType.BY_BUTTON);
+        menus.closeActiveMenu(this, ClosureType.BY_BUTTON);
     }
 
     public boolean isFather() {

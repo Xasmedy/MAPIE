@@ -30,7 +30,7 @@ public interface ButtonList {
     }
 
     default void addLastColumn(Button... buttons) {
-        addColumn(columnSize() - 1, buttons);
+        addColumn(columnSize(), buttons);
     }
 
     Button[] getColumn(int column);

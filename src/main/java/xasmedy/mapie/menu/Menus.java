@@ -14,7 +14,6 @@ import mindustry.game.EventType;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
-import mindustry.ui.Menus;
 import xasmedy.mapie.menu.entity.Button;
 import xasmedy.mapie.menu.entity.ClosureType;
 import xasmedy.mapie.menu.entity.MenuTemplate;
@@ -23,7 +22,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 
-public final class MenusExecutor {
+public final class Menus {
 
     private static final AtomicBoolean INSTANCIED = new AtomicBoolean(false);
     private static final int FORCE_CLOSE_ID = -2;
@@ -34,7 +33,7 @@ public final class MenusExecutor {
      */
     private final HashMap<Player, MenuPanel> playersMenu = new HashMap<>();
 
-    public MenusExecutor() {
+    public Menus() {
 
         if (INSTANCIED.getAndSet(true)) throw new IllegalStateException("Cannot instantiate singleton.");
 
@@ -84,7 +83,7 @@ public final class MenusExecutor {
     }
 
     public MenuTemplate registerNewMenu(Function<Integer, MenuTemplate> constructor) {
-        final int id = Menus.registerMenu(this::handleMenuAction);
+        final int id = mindustry.ui.Menus.registerMenu(this::handleMenuAction);
         return constructor.apply(id);
     }
 
