@@ -9,32 +9,35 @@
 package xasmedy.mapie.menu;
 
 import arc.Events;
+import arc.util.Log;
 import mindustry.game.EventType;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
 import mindustry.ui.Menus;
-import xasmedy.mapie.menu.builder.MenuTemplate;
-import xasmedy.mapie.menu.button.Button;
-import xasmedy.mapie.menu.close.ClosureType;
+import xasmedy.mapie.menu.entity.Button;
+import xasmedy.mapie.menu.entity.ClosureType;
+import xasmedy.mapie.menu.entity.MenuTemplate;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Function;
 
-public class MenusRegister {
+public class MenusExecutor {
 
     private static final AtomicBoolean INSTANCIED = new AtomicBoolean(false);
 
     /**
      * Only one menu per player. (I don't see a reason to have more than one)
      */
-    private final HashMap<Player, Menu> playerMenus = new HashMap<>();
+    private final HashMap<Player, MenuPanel> playersMenu = new HashMap<>();
 
-    public MenusRegister() {
+    public MenusExecutor() {
 
         if (INSTANCIED.getAndSet(true)) throw new IllegalStateException("Cannot instantiate singleton.");
 
         Events.on(EventType.PlayerLeave.class, e -> {
-            if (!playerMenus.containsKey(e.player)) return;
+            if (!playersMenu.containsKey(e.player)) return;
             close(e.player, ClosureType.PLAYER_LEAVE);
         });
     }
@@ -48,40 +51,51 @@ public class MenusRegister {
             return;
         }
 
-        final Menu menu = playerMenus.get(player);
+        // Custom closure type that indicates the player opened a new menu.
+        if (option == -2) {
+            close(player, ClosureType.OVERWRITE);
+            return;
+        }
+
+        final MenuPanel menu = playersMenu.get(player);
         final Button button = menu.getCurrentTemplate()
-                .getButtons()
-                .get(option);
+                .getButtonList()
+                .getMindustryOption(option);
 
         // I reload myself, making it look like nothing happen.
-        if (button.isDisabled()) menu.displayMyself();
+        if (button.isDisabled()) {
+            Log.info("Displaying myself");
+            menu.update();
+        }
         // I trigger the listeners.
-        else button.getListeners().forEach(listener -> listener.action(menu, button));
-    }
-
-    void displayTemplate(Player player, MenuTemplate template) {
-        Call.menu(player.con(), template.getId(), template.getTitle(), template.getMessage(), template.getButtons().asString());
+        else button.getListener().ifPresent(listener -> listener.action(menu));
     }
 
     void close(Player player, ClosureType type) {
-        final Menu menu = playerMenus.remove(player);
+        final MenuPanel menu = playersMenu.remove(player);
         menu.getCurrentTemplate()
-                .getCloseAction()
+                .getCloseListener()
                 .ifPresent(listener -> listener.action(menu, type));
     }
 
-    public MenuTemplate registerNewMenu() {
+    public MenuTemplate registerNewMenu(Function<Integer, MenuTemplate> constructor) {
         final int id = Menus.registerMenu(this::handleMenuAction);
-        return new MenuTemplate(id);
-    }
-
-    public MenuTemplate newChildMenu(int fatherId) {
-        return new MenuTemplate(fatherId);
+        return constructor.apply(id);
     }
 
     public void displayMenu(Player player, MenuTemplate template) {
-        playerMenus.put(player, new Menu(this, player, template));
-        displayTemplate(player, template);
+
+        // TODO Figure things out. Separate method?
+        // I close the player old menu.
+        final MenuPanel oldMenu = playersMenu.get(player);
+        if (oldMenu != null) Call.menuChoose(player, oldMenu.getCurrentTemplate().getId(), -2);
+        // Network delay will fuck things up.
+
+        // I get a copy to avoid unwanted changes during execution.
+        template = Objects.requireNonNull(template.copy());
+        final MenuPanel menuPanel = new MenuPanel(this, player, template);
+        playersMenu.put(player, menuPanel);
+        menuPanel.update(); // I display the new panel.
     }
 
     public void displayMenu(MenuTemplate template) {

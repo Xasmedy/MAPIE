@@ -9,12 +9,12 @@
 package xasmedy.mapie;
 
 import xasmedy.mapie.icon.ChatIcons;
-import xasmedy.mapie.menu.MenusRegister;
+import xasmedy.mapie.menu.MenusExecutor;
 
 final class MAPIEImpl implements MAPIE {
 
     private final ChatIcons chatIcons = new ChatIcons();
-    private final MenusRegister menusRegister = new MenusRegister();
+    private final MenusExecutor menusRegister = new MenusExecutor();
 
     @Override
     public ChatIcons getChatIcons() {
@@ -22,7 +22,7 @@ final class MAPIEImpl implements MAPIE {
     }
 
     @Override
-    public MenusRegister getMenusRegister() {
+    public MenusExecutor getMenusRegister() {
         return menusRegister;
     }
 }

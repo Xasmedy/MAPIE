@@ -6,12 +6,12 @@
  * Contributors of this file may put their name into the copyright notice.
  */
 
-package xasmedy.mapie.menu.close;
+package xasmedy.mapie.menu.entity;
 
-import xasmedy.mapie.menu.Menu;
+import xasmedy.mapie.menu.MenuPanel;
 
 @FunctionalInterface
-public interface CloseListener {
+public interface ButtonTriggerListener {
 
-    void action(Menu menu, ClosureType type);
+    void action(MenuPanel menu);
 }

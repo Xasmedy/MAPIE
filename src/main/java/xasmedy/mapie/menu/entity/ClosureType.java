@@ -6,12 +6,11 @@
  * Contributors of this file may put their name into the copyright notice.
  */
 
-package xasmedy.mapie.menu.button;
+package xasmedy.mapie.menu.entity;
 
-import xasmedy.mapie.menu.Menu;
-
-@FunctionalInterface
-public interface ButtonTriggerListener {
-
-    void action(Menu menu, Button myself);
+public enum ClosureType {
+    PLAYER_LEAVE,
+    LOST_FOCUS,
+    BY_BUTTON,
+    OVERWRITE
 }

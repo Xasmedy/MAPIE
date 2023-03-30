@@ -10,7 +10,7 @@ package xasmedy.mapie;
 
 import mindustry.mod.Plugin;
 import xasmedy.mapie.icon.ChatIcons;
-import xasmedy.mapie.menu.MenusRegister;
+import xasmedy.mapie.menu.MenusExecutor;
 
 /**
  * Allows the access to the services.<br>
@@ -24,5 +24,5 @@ public interface MAPIE {
 
     ChatIcons getChatIcons();
 
-    MenusRegister getMenusRegister();
+    MenusExecutor getMenusRegister();
 }

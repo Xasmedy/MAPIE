@@ -6,11 +6,12 @@
  * Contributors of this file may put their name into the copyright notice.
  */
 
-package xasmedy.mapie.menu.close;
+package xasmedy.mapie.menu.entity;
 
-public enum ClosureType {
+import xasmedy.mapie.menu.MenuPanel;
 
-    PLAYER_LEAVE,
-    LOST_FOCUS,
-    BY_BUTTON
+@FunctionalInterface
+public interface CloseListener {
+
+    void action(MenuPanel menu, ClosureType type);
 }
