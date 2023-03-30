@@ -1,14 +1,15 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
-
-group 'xasmedy'
-version 'v0.5'
 
 repositories {
     mavenCentral()
     maven { url 'https://www.jitpack.io' }
 }
+
+group = 'com.github.Xasmedy'
+version = 'v0.5'
 
 ext {
     mindustry = 'v142'
@@ -16,4 +17,13 @@ ext {
 
 dependencies {
     implementation "com.github.Anuken.Mindustry:core:${mindustry}"
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = 'mapie'
+            from components.java
+        }
+    }
 }

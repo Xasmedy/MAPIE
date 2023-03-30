@@ -1,4 +1,6 @@
 # Mindustry API Extension.
+[![](https://jitpack.io/v/Xasmedy/MAPIE.svg)](https://jitpack.io/#Xasmedy/MAPIE)
+
 A library made to extend mindustry basic api functionalities.
 
 ### Warning! The Library is still under development and could contain bugs.

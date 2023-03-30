@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Project init.&#10;- Added an IconManager.&#10;- Working towards an abstraction of Menus." />
+    <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Now the menu will be displayed when created.">
+      <change afterPath="$PROJECT_DIR$/jitpack.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,9 +34,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -62,10 +66,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/xasmedy/IdeaProjects/MAPIE",
+    "last_opened_file_path": "/home/xasmedy/IdeaProjects/BetterCommands",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "copyright"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -77,9 +82,10 @@
     <option name="myCommands">
       <command value="git merge master" />
       <command value="git pull" />
+      <command value="gradle jar" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.ChatIcons">
+  <component name="RunManager" selected="Gradle.MAPIE [jar]">
     <configuration name="ChatIcons" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="xasmedy.mapie.icon.ChatIcons" />
       <module name="MAPIE.main" />
@@ -115,6 +121,28 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
+    <configuration name="MAPIE [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="MindustryAPIExtension" />
       <method v="2">
@@ -130,6 +158,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.MAPIE [jar]" />
         <item itemvalue="Application.ChatIcons" />
         <item itemvalue="Gradle.MAPIE [build]" />
         <item itemvalue="Application.ChatIcons" />
@@ -152,7 +181,63 @@
       <option name="project" value="LOCAL" />
       <updated>1680107808627</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added copyright.">
+      <created>1680124650851</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1680124650851</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Maybe copyright not here.">
+      <created>1680124753032</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1680124753032</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added a placeholder README.">
+      <created>1680124875675</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1680124875675</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Now comments are ignored from the icon file.">
+      <created>1680125136869</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1680125136869</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Finished the menu abstraction basics.">
+      <created>1680125986489</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680125986489</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added a small interface to access services.">
+      <created>1680126656101</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1680126656101</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Made a really drafted README.">
+      <created>1680127518762</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1680127518762</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Now the menu will be displayed when created.">
+      <created>1680127863238</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1680127863238</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,6 +253,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Project init.&#10;- Added an IconManager.&#10;- Working towards an abstraction of Menus." />
-    <option name="LAST_COMMIT_MESSAGE" value="Project init.&#10;- Added an IconManager.&#10;- Working towards an abstraction of Menus." />
+    <MESSAGE value="Added copyright." />
+    <MESSAGE value="Maybe copyright not here." />
+    <MESSAGE value="Added a placeholder README." />
+    <MESSAGE value="Now comments are ignored from the icon file." />
+    <MESSAGE value="Finished the menu abstraction basics." />
+    <MESSAGE value="Added a small interface to access services." />
+    <MESSAGE value="Made a really drafted README." />
+    <MESSAGE value="Now the menu will be displayed when created." />
+    <option name="LAST_COMMIT_MESSAGE" value="Now the menu will be displayed when created." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
