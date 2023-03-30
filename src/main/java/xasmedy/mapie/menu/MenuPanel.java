@@ -99,7 +99,7 @@ public final class MenuPanel {
 
     public void close() {
         // TODO Player choose? (not the best)
-        menusRegister.close(getPlayer(), ClosureType.BY_BUTTON);
+        menusRegister.closeActiveMenu(this, ClosureType.BY_BUTTON);
     }
 
     public boolean isFather() {

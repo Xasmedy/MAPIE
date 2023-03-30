@@ -12,5 +12,5 @@ public enum ClosureType {
     PLAYER_LEAVE,
     LOST_FOCUS,
     BY_BUTTON,
-    OVERWRITE
+    FORCED
 }

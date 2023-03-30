@@ -60,27 +60,34 @@ public final class ButtonListImpl implements ButtonList {
     public Button remove(int column, int row) {
 
         final ArrayList<Button> rowButtons = buttons.get(column);
-        try {
-            return rowButtons.remove(row);
-        } finally {
-            if (rowButtons.isEmpty()) buttons.remove(column);
-        }
+        final Button button = rowButtons.remove(row);
+        rowButtons.trimToSize();
+
+        if (!rowButtons.isEmpty()) return button;
+
+        buttons.remove(column);
+        buttons.trimToSize();
+        return button;
     }
 
     @Override
     public Button[] removeColumn(int column) {
-        return buttons.remove(column).toArray(Button[]::new);
+        final Button[] removedColumn = buttons.remove(column).toArray(Button[]::new);
+        buttons.trimToSize();
+        return removedColumn;
     }
 
     @Override
     public boolean removeFromColumn(int column, Button button) {
 
         final ArrayList<Button> rowButtons = buttons.get(column);
-        try {
-            return rowButtons.remove(button);
-        } finally {
-            if (rowButtons.isEmpty()) buttons.remove(column);
-        }
+        final boolean removed = rowButtons.remove(button);
+        rowButtons.trimToSize();
+        if (!rowButtons.isEmpty()) return removed;
+
+        buttons.remove(column);
+        buttons.trimToSize();
+        return removed;
     }
 
     @Override

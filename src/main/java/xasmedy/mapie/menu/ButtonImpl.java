@@ -33,11 +33,6 @@ class ButtonImpl implements Button {
     }
 
     @Override
-    public Optional<ButtonTriggerListener> getListener() {
-        return Optional.ofNullable(listener);
-    }
-
-    @Override
     public void setListener(ButtonTriggerListener listener) {
         this.listener = listener;
     }
@@ -60,5 +55,10 @@ class ButtonImpl implements Button {
     @Override
     public String getLabel() {
         return label;
+    }
+
+    @Override
+    public Optional<ButtonTriggerListener> getListener() {
+        return Optional.ofNullable(listener);
     }
 }

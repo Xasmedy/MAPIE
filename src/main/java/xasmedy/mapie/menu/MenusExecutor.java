@@ -23,10 +23,11 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 
-public class MenusExecutor {
+public final class MenusExecutor {
 
     private static final AtomicBoolean INSTANCIED = new AtomicBoolean(false);
-
+    private static final int FORCE_CLOSE_ID = -2;
+    
     /**
      * Only one menu per player. (I don't see a reason to have more than one)
      */
@@ -37,42 +38,45 @@ public class MenusExecutor {
         if (INSTANCIED.getAndSet(true)) throw new IllegalStateException("Cannot instantiate singleton.");
 
         Events.on(EventType.PlayerLeave.class, e -> {
-            if (!playersMenu.containsKey(e.player)) return;
-            close(e.player, ClosureType.PLAYER_LEAVE);
+            final MenuPanel menu = playersMenu.get(e.player);
+            if (menu == null) return;
+            closeActiveMenu(menu, ClosureType.PLAYER_LEAVE);
         });
     }
 
     private void handleMenuAction(Player player, int option) {
 
+        final MenuPanel menu = playersMenu.get(player);
+        // The menu has been closed badly by the player.
+        if (menu == null) {
+            Log.debug("Bad menu closure for player \"" + player.uuid() + "\"");
+            return;
+        }
+
         // When the player exits the menu by using other means.
         // e.g. clicking outside the menu, pressing esc.
         if (option == -1) {
-            close(player, ClosureType.LOST_FOCUS);
+            closeActiveMenu(menu, ClosureType.LOST_FOCUS);
             return;
         }
 
-        // Custom closure type that indicates the player opened a new menu.
-        if (option == -2) {
-            close(player, ClosureType.OVERWRITE);
+        // Custom closure type that indicates that the menu has been closed by force.
+        if (option == FORCE_CLOSE_ID) {
+            closeActiveMenu(menu, ClosureType.FORCED);
             return;
         }
 
-        final MenuPanel menu = playersMenu.get(player);
         final Button button = menu.getCurrentTemplate()
                 .getButtonList()
                 .getMindustryOption(option);
 
         // I reload myself, making it look like nothing happen.
-        if (button.isDisabled()) {
-            Log.info("Displaying myself");
-            menu.update();
-        }
-        // I trigger the listeners.
+        if (button.isDisabled()) menu.update();
         else button.getListener().ifPresent(listener -> listener.action(menu));
     }
 
-    void close(Player player, ClosureType type) {
-        final MenuPanel menu = playersMenu.remove(player);
+    void closeActiveMenu(MenuPanel menu, ClosureType type) {
+        playersMenu.remove(menu.getPlayer());
         menu.getCurrentTemplate()
                 .getCloseListener()
                 .ifPresent(listener -> listener.action(menu, type));
@@ -83,19 +87,16 @@ public class MenusExecutor {
         return constructor.apply(id);
     }
 
-    public void displayMenu(Player player, MenuTemplate template) {
-
-        // TODO Figure things out. Separate method?
-        // I close the player old menu.
+    public void forceMenuClose(Player player) {
         final MenuPanel oldMenu = playersMenu.get(player);
-        if (oldMenu != null) Call.menuChoose(player, oldMenu.getCurrentTemplate().getId(), -2);
-        // Network delay will fuck things up.
+        if (oldMenu != null) Call.menuChoose(player, oldMenu.getCurrentTemplate().getId(), FORCE_CLOSE_ID);
+    }
 
-        // I get a copy to avoid unwanted changes during execution.
-        template = Objects.requireNonNull(template.copy());
-        final MenuPanel menuPanel = new MenuPanel(this, player, template);
+    public void displayMenu(Player player, MenuTemplate template) {
+        // I get a copy to avoid unwanted changes during the menu life.
+        final MenuPanel menuPanel = new MenuPanel(this, player, Objects.requireNonNull(template.copy()));
         playersMenu.put(player, menuPanel);
-        menuPanel.update(); // I display the new panel.
+        menuPanel.update(); // I display the menu.
     }
 
     public void displayMenu(MenuTemplate template) {
