@@ -24,5 +24,5 @@ public interface MAPIE {
 
     ChatIcons getChatIcons();
 
-    MenusExecutor getMenusRegister();
+    MenusExecutor getMenusExecutor();
 }

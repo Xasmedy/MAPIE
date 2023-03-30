@@ -16,18 +16,13 @@ import java.util.Optional;
 final class MenuTemplateImpl implements MenuTemplate {
 
     private final ButtonListImpl buttons;
-    private int id;
+    private final int id;
     private String title = ""; // Never null.
     private String message = ""; // Never null.
     private boolean shouldResetOnContextChange = true;
     private CloseListener closeListener;
 
-    private MenuTemplateImpl() {
-        this.buttons = new ButtonListImpl();
-    }
-
-    private MenuTemplateImpl(int id) {
-        if (id < 0) throw new IllegalArgumentException("The id can not be negative.");
+    public MenuTemplateImpl(int id) {
         this.id = id;
         this.buttons = new ButtonListImpl();
     }

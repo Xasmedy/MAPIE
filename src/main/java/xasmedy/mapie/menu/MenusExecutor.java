@@ -27,7 +27,8 @@ public final class MenusExecutor {
 
     private static final AtomicBoolean INSTANCIED = new AtomicBoolean(false);
     private static final int FORCE_CLOSE_ID = -2;
-    
+    private static final Function<Integer, MenuTemplate> TEMPLATE_CONSTRUCTOR = MenuTemplateImpl::new;
+
     /**
      * Only one menu per player. (I don't see a reason to have more than one)
      */
@@ -102,6 +103,10 @@ public final class MenusExecutor {
 
     public void displayMenu(MenuTemplate template) {
         for (Player player : Groups.player) displayMenu(player, template);
+    }
+
+    public Function<Integer, MenuTemplate> getDefaultTemplateConstructor() {
+        return TEMPLATE_CONSTRUCTOR;
     }
 
     public Button newDefaultButton(String label, boolean disabled) {
