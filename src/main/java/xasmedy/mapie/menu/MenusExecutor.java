@@ -88,8 +88,9 @@ public final class MenusExecutor {
     }
 
     public void forceMenuClose(Player player) {
-        final MenuPanel oldMenu = playersMenu.get(player);
-        if (oldMenu != null) Call.menuChoose(player, oldMenu.getCurrentTemplate().getId(), FORCE_CLOSE_ID);
+        final MenuPanel menu = playersMenu.get(player);
+        if (menu == null) return;
+        Call.menuChoose(player, menu.getCurrentTemplate().getId(), FORCE_CLOSE_ID);
     }
 
     public void displayMenu(Player player, MenuTemplate template) {
@@ -101,5 +102,17 @@ public final class MenusExecutor {
 
     public void displayMenu(MenuTemplate template) {
         for (Player player : Groups.player) displayMenu(player, template);
+    }
+
+    public Button newDefaultButton(String label, boolean disabled) {
+        return new ButtonImpl(label, disabled);
+    }
+
+    public Button newDefaultButton(String label) {
+        return newDefaultButton(label, false);
+    }
+
+    public Button newDefaultButton() {
+        return newDefaultButton("", false);
     }
 }

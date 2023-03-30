@@ -19,17 +19,11 @@ class ButtonImpl implements Button {
     private String label; // Always not null.
     private boolean isDisabled;
 
+    // TODO Hidden button flag? Or new interface called HiddenButton and have it on a separate collection? (likely this)
+
     ButtonImpl(String label, boolean disabled) {
         this.label = Objects.requireNonNull(label);
         this.isDisabled = disabled;
-    }
-
-    ButtonImpl(String label) {
-        this(label, false);
-    }
-
-    ButtonImpl() {
-        this("", false);
     }
 
     @Override
