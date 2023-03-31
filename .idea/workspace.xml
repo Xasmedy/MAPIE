@@ -5,24 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Configuring JitPack.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonListImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuTemplateImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/Button.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/ButtonList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/MenuTemplate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/MAPIE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/MAPIE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/MAPIEImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/MAPIEImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenusRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenusExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/builder/MenuButtons.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/builder/MenuTemplate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/button/Button.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/button/ButtonTriggerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/ButtonTriggerListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/close/CloseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/CloseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/close/ClosureType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/ClosureType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +64,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/xasmedy/IdeaProjects/Mindustry",
+    "last_opened_file_path": "/home/xasmedy/Desktop/Mindustry-142",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",

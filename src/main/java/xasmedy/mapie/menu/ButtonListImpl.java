@@ -106,7 +106,7 @@ public final class ButtonListImpl implements ButtonList {
             // I get how many rows are left aka the index.
             return rowButtons.get(option - i);
         }
-        throw new NoSuchElementException(); // This should never happen.
+        throw new NoSuchElementException("Option not found: " + option); // This should never happen.
     }
 
     @Override
