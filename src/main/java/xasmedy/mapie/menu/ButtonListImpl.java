@@ -98,9 +98,9 @@ public final class ButtonListImpl implements ButtonList {
             final ArrayList<Button> rowButtons = buttons.get(column);
 
             // In case the option is not at this row I go to the next one.
-            if ((i + rowButtons.size() - 1) < option) {
+            if (i + rowButtons.size() <= option) {
                 // I increment this here to avoid problems in case the if statement is false.
-                i = rowButtons.size() - 1;
+                i += rowButtons.size();
                 continue;
             }
             // I get how many rows are left aka the index.
