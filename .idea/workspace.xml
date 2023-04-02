@@ -4,20 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Refactored.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Panel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/UnmodifiableTemplate.java" afterDir="false" />
+    <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Ton of changes.&#10;- New UnmodifiableTemplate implementations. &#10;- More refactoring.&#10;- More interfaces and generalization, meaning more user-side customization.&#10;- More and updated docs.&#10;Closer to release. :eyes:">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonTriggerListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/CloseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/function/CloseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/MAPIE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/MAPIE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/MAPIEImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ClosureType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ClosureType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/FollowUpPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Template.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/SimpleButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/SimpleButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/SimpleMenuTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/SimpleTemplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/UnmodifiableButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/UnmodifiableButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/FollowUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/FollowUpPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680450818609</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Ton of changes.&#10;- New UnmodifiableTemplate implementations. &#10;- More refactoring.&#10;- More interfaces and generalization, meaning more user-side customization.&#10;- More and updated docs.&#10;Closer to release. :eyes:">
+      <created>1680457022785</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1680457022785</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -303,7 +304,8 @@
     <MESSAGE value="Configuring JitPack." />
     <MESSAGE value="Updated to v143, refactored, and new Button implementation." />
     <MESSAGE value="Refactored." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored." />
+    <MESSAGE value="Ton of changes.&#10;- New UnmodifiableTemplate implementations. &#10;- More refactoring.&#10;- More interfaces and generalization, meaning more user-side customization.&#10;- More and updated docs.&#10;Closer to release. :eyes:" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ton of changes.&#10;- New UnmodifiableTemplate implementations. &#10;- More refactoring.&#10;- More interfaces and generalization, meaning more user-side customization.&#10;- More and updated docs.&#10;Closer to release. :eyes:" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

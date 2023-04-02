@@ -10,19 +10,26 @@ package xasmedy.mapie;
 
 import mindustry.mod.Plugin;
 import xasmedy.mapie.icon.ChatIcons;
-import xasmedy.mapie.menu.Menus;
+import xasmedy.mapie.menu.Menu;
 
-/**
- * Allows the access to the services.<br>
- * Call {@link MAPIE#init()} only inside {@link Plugin#init()}.
- */
-public interface MAPIE {
+public final class MAPIE {
 
-    static MAPIE init() {
-        return new MAPIEImpl();
+    private static MAPIE singleton = null;
+
+    public final ChatIcons chatIcons;
+    public final Menu menu;
+
+    private MAPIE() {
+        this.chatIcons = new ChatIcons();
+        this.menu = new Menu();
     }
 
-    ChatIcons getChatIcons();
-
-    Menus getMenus();
+    /**
+     * Only call this inside {@link Plugin#init()} or after it ran.<br>
+     * The value is cached, so this method can be called multiple times without generating new instances.
+     */
+    public static MAPIE init() {
+        if (singleton == null) singleton = new MAPIE();
+        return singleton;
+    }
 }

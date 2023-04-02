@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
-public final class Menus {
+public final class Menu {
 
     private static final AtomicBoolean INSTANCIED = new AtomicBoolean(false);
     /**
@@ -36,14 +36,14 @@ public final class Menus {
      */
     private final HashMap<Player, Panel> playersMenu = new HashMap<>();
 
-    public Menus() {
+    public Menu() {
 
         if (INSTANCIED.getAndSet(true)) throw new IllegalStateException("Cannot instantiate singleton.");
 
         Events.on(EventType.PlayerLeave.class, e -> {
             final Panel panel = playersMenu.get(e.player);
             if (panel == null) return;
-            closePanel(panel, ClosureType.PLAYER_LEAVE);
+            removePanel(panel, ClosureType.PLAYER_LEAVE);
         });
     }
 
@@ -58,15 +58,10 @@ public final class Menus {
         }
 
         switch (option) {
-            case DEFAULT_CLOSURE -> closePanel(panel, ClosureType.LOST_FOCUS);
-            case REMOTE_CLOSURE -> closePanel(panel, ClosureType.BY_PANEL);
+            case DEFAULT_CLOSURE -> removePanel(panel, ClosureType.LOST_FOCUS);
+            case REMOTE_CLOSURE -> removePanel(panel, ClosureType.BY_PANEL);
             default -> panel.selectionEvent(panel.template().parser().get(option));
         }
-    }
-
-    void closePanel(Panel panel, ClosureType type) {
-        playersMenu.remove(panel.player());
-        panel.template().closeListener().action(type);
     }
 
     public <T extends Template> T registerNewMenu(Function<Integer, T> constructor) {
@@ -81,14 +76,14 @@ public final class Menus {
         return constructor.apply(registeredId);
     }
 
-    public void displayMenu(Player player, Template template) {
-
-        Objects.requireNonNull(player);
-        Objects.requireNonNull(template);
-
-        // I get a copy to avoid unwanted changes during the menu life.
-        final FollowUpPanel<?> panel = new FollowUpPanel<>(this, player, template);
-        playersMenu.put(player, panel);
-        panel.update(); // I display the menu.
+    /**
+     * Removes the panel but <strong>does NOT hide it</strong>  to the player!<br>
+     * ALWAYS use {@link Panel#close()} unless making a custom implementation.
+     * @param panel The panel to remove.
+     * @param type How this panel has been removed.
+     */
+    public void removePanel(Panel panel, ClosureType type) {
+        playersMenu.remove(panel.player());
+        panel.template().closeListener().action(type);
     }
 }

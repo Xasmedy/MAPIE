@@ -18,14 +18,14 @@ import java.util.Objects;
  */
 public class FollowUpPanel<T extends Template> implements Panel {
 
-    private final Menus menus;
+    private final Menu menu;
     private final Player player;
     protected T current;
 
-    FollowUpPanel(Menus menus, Player player, T current) {
-        this.menus = menus;
-        this.player = player;
-        this.current = current;
+    public FollowUpPanel(Menu menu, Player player, T current) {
+        this.menu = Objects.requireNonNull(menu);
+        this.player = Objects.requireNonNull(player);
+        this.current = Objects.requireNonNull(current);
     }
 
     /**
@@ -62,6 +62,7 @@ public class FollowUpPanel<T extends Template> implements Panel {
 
     @Override
     public final void close() {
-        menus.closePanel(this, ClosureType.BY_PANEL);
+        Call.hideFollowUpMenu(current.menuId());
+        menu.removePanel(this, ClosureType.BY_PANEL);
     }
 }

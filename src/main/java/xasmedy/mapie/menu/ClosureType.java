@@ -20,5 +20,9 @@ public enum ClosureType {
     /**
      * When the menu has been closed by a {@link Panel} implementation.
      */
-    BY_PANEL
+    BY_PANEL,
+    /**
+     * A closure that can be used in custom {@link Panel} implementations.
+     */
+    CUSTOM
 }
