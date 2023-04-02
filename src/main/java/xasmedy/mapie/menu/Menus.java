@@ -12,18 +12,18 @@ import arc.Events;
 import arc.util.Log;
 import mindustry.game.EventType;
 import mindustry.gen.Call;
-import mindustry.gen.Groups;
 import mindustry.gen.Player;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
 public final class Menus {
 
     private static final AtomicBoolean INSTANCIED = new AtomicBoolean(false);
+    @Deprecated
     private static final int FORCE_CLOSE_ID = -2;
-    private static final Function<Integer, MenuTemplate> TEMPLATE_CONSTRUCTOR = MenuTemplateImpl::new;
 
     /**
      * Only one menu per player. (I don't see a reason to have more than one)
@@ -41,7 +41,7 @@ public final class Menus {
         });
     }
 
-    private void handleMenuAction(Player player, int option) {
+    private void handleMenuAction(int menuId, Player player, int option) {
 
         final MenuPanel menu = playersMenu.get(player);
         // The menu has been closed badly by the player.
@@ -57,6 +57,7 @@ public final class Menus {
             return;
         }
 
+        // TODO Remove.
         // Custom closure type that indicates that the menu has been closed by force.
         if (option == FORCE_CLOSE_ID) {
             closeActiveMenu(menu, ClosureType.FORCED);
@@ -64,44 +65,47 @@ public final class Menus {
         }
 
         final Button button = menu.getTemplate()
-                .buttons()
-                .getMindustryOption(option);
+                .parser()
+                .get(option);
 
         // I reload myself, making it look like nothing happen.
         if (button.isDisabled()) menu.update();
-        else button.listener().action(menu);
+        else button.listener().action(menu, button);
     }
 
     void closeActiveMenu(MenuPanel menu, ClosureType type) {
         playersMenu.remove(menu.getPlayer());
         menu.getTemplate()
-                .getCloseListener()
-                .ifPresent(listener -> listener.action(menu, type));
+                .closeListener()
+                .action(menu, type);
     }
 
-    public MenuTemplate registerNewMenu(Function<Integer, MenuTemplate> constructor) {
-        final int id = mindustry.ui.Menus.registerMenu(this::handleMenuAction);
-        return constructor.apply(id);
+    public <T extends MenuTemplate> T registerNewMenu(Function<Integer, T> constructor) {
+
+        Objects.requireNonNull(constructor);
+
+        // set() will always be called before get().
+        final AtomicInteger menuId = new AtomicInteger(-1);
+        final int registeredId = mindustry.ui.Menus.registerMenu((Player player, int option) -> handleMenuAction(menuId.get(), player, option));
+        menuId.set(registeredId);
+        // I create the user-defined MenuTemplate.
+        return constructor.apply(registeredId);
     }
 
     public void forceMenuClose(Player player) {
         final MenuPanel menu = playersMenu.get(player);
         if (menu == null) return;
-        Call.menuChoose(player, menu.getTemplate().getId(), FORCE_CLOSE_ID);
+        Call.menuChoose(player, menu.getTemplate().menuId(), FORCE_CLOSE_ID);
     }
 
     public void displayMenu(Player player, MenuTemplate template) {
+
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(template);
+
         // I get a copy to avoid unwanted changes during the menu life.
-        final MenuPanel menuPanel = new MenuPanel(this, player, Objects.requireNonNull(template.copy()));
+        final MenuPanel menuPanel = new MenuPanel(this, player, template);
         playersMenu.put(player, menuPanel);
         menuPanel.update(); // I display the menu.
-    }
-
-    public void displayMenu(MenuTemplate template) {
-        for (Player player : Groups.player) displayMenu(player, template);
-    }
-
-    public Function<Integer, MenuTemplate> getDefaultTemplateConstructor() {
-        return TEMPLATE_CONSTRUCTOR;
     }
 }

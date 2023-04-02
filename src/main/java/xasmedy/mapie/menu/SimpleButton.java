@@ -10,9 +10,10 @@ package xasmedy.mapie.menu;
 
 import java.util.Objects;
 
-public class SimpleButton implements Button {
+public final class SimpleButton implements Button {
 
-    private ButtonTriggerListener listener;
+    private static final ButtonTriggerListener DEFAULT_LISTENER = (menu, myself) -> {};
+    private ButtonTriggerListener listener = DEFAULT_LISTENER;
     private String label;
     private boolean disabled;
     private boolean hidden;

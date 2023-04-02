@@ -24,7 +24,7 @@ public record UnmodifiableButton(String label, ButtonTriggerListener listener) i
 
     @Override
     public boolean isHidden() {
-        return false; // Always false, do not add the button if it is not shown.
+        return false; // Always false, do not add the button if it will never be shown.
     }
 
     @Override

@@ -10,6 +10,5 @@ package xasmedy.mapie.menu;
 
 @FunctionalInterface
 public interface CloseListener {
-
     void action(MenuPanel menu, ClosureType type);
 }

@@ -11,7 +11,6 @@ package xasmedy.mapie.menu;
 import mindustry.gen.Call;
 import mindustry.gen.Player;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * The current interface the player is seeing, this never changes.
@@ -27,35 +26,16 @@ public final class MenuPanel {
     private final Menus menus;
     private final Player player;
     private MenuTemplate current;
-    /**
-     * A copy of the template in case {@link MenuTemplateImpl#shouldResetOnContextChange()} is true.<br>
-     * If the option is set to false, this must be null.
-     */
-    private MenuTemplate currentCopy;
 
     MenuPanel(Menus menus, Player player, MenuTemplate current) {
         this.menus = menus;
         this.player = player;
         this.current = current;
-        copyIfEnabled();
-    }
-
-    private void copyIfEnabled() {
-        // User defined, so it could be null.
-        // Checking it here is better than having it be called at some random point in the program.
-        this.currentCopy = current.shouldResetOnContextChange() ? Objects.requireNonNull(current.copy()) : null;
-    }
-
-    private void resetTemplateWithCopy() {
-        // If the user still wants to reset.
-        if (!current.shouldResetOnContextChange()) return;
-        current = currentCopy;
     }
 
     public void update() {
-        copyIfEnabled();
-        final String[][] options = current.buttons().asMindustryOptions();
-        Call.followUpMenu(player.con(), current.getId(), current.getTitle(), current.getMessage(), options);
+        final String[][] options = current.parser().asString();
+        Call.followUpMenu(player.con(), current.menuId(), current.title(), current.message(), options);
     }
 
     public void displayFromTopMenus(int index) {
@@ -66,19 +46,16 @@ public final class MenuPanel {
             if (i <= index) continue;
             iterator.remove();
         }
-        resetTemplateWithCopy();
         current = topMenus.remove(index);
         update();
     }
 
     public void displayTopMenu() {
-        resetTemplateWithCopy();
         current = topMenus.remove(topMenus.size() - 1);
         update();
     }
 
     public void displaySubMenu(MenuTemplate template) {
-        resetTemplateWithCopy();
         topMenus.add(current);
         current = template;
         update();

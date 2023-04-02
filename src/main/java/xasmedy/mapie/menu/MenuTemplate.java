@@ -8,31 +8,21 @@
 
 package xasmedy.mapie.menu;
 
-import java.util.Optional;
-
 public interface MenuTemplate {
 
-    int getId();
+    int menuId();
 
-    MenuTemplate copy();
+    String title();
 
-    MenuTemplate makeSubMenu(MenuTemplate father);
+    String message();
 
-    ButtonGroup buttons();
+    CloseListener closeListener();
 
-    void setTitle(String title);
+    void title(String title) throws NullPointerException;
 
-    void setMessage(String message);
+    void message(String message) throws NullPointerException;
 
-    void setResetOnContextChange(boolean shouldReset);
+    void closeListener(CloseListener listener) throws NullPointerException;
 
-    void setCloseListener(CloseListener listener);
-
-    String getTitle();
-
-    String getMessage();
-
-    boolean shouldResetOnContextChange();
-
-    Optional<CloseListener> getCloseListener();
+    ButtonParser parser();
 }

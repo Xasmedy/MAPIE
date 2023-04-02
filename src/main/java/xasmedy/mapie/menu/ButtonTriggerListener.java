@@ -10,6 +10,5 @@ package xasmedy.mapie.menu;
 
 @FunctionalInterface
 public interface ButtonTriggerListener {
-
-    void action(MenuPanel menu);
+    void action(MenuPanel menu, Button myself);
 }

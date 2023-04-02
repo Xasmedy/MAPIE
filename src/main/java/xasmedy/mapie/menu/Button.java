@@ -16,6 +16,10 @@ public interface Button {
 
     boolean isHidden();
 
+    default boolean isShown() {
+        return !isHidden();
+    }
+
     ButtonTriggerListener listener();
 
     /**
