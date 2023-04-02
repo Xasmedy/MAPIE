@@ -10,6 +10,7 @@ package xasmedy.mapie.menu;
 
 import xasmedy.mapie.menu.function.CloseListener;
 
+@SuppressWarnings("unused")
 public record UnmodifiableTemplate(int menuId, String title, String message, ButtonParser parser,
                                    CloseListener closeListener) implements Template {
 

@@ -16,6 +16,7 @@ import java.util.Objects;
  * Implementation using {@link Call#followUpMenu}.
  * @param <T> User decided template.
  */
+@SuppressWarnings("unused")
 public class FollowUpPanel<T extends Template> implements Panel {
 
     private final Menu menu;

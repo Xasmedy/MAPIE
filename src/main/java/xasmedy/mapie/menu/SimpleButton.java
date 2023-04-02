@@ -10,6 +10,7 @@ package xasmedy.mapie.menu;
 
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 public final class SimpleButton implements Button {
 
     private static final Runnable DEFAULT_LISTENER = () -> {};

@@ -8,6 +8,7 @@
 
 package xasmedy.mapie.menu;
 
+@SuppressWarnings("unused")
 public interface Button {
 
     String label();

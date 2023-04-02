@@ -11,6 +11,7 @@ package xasmedy.mapie.menu;
 import xasmedy.mapie.menu.function.CloseListener;
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 public class SimpleTemplate implements Template {
 
     private static final CloseListener DEFAULT_LISTENER = (closureType) -> {};

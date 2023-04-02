@@ -24,5 +24,6 @@ public enum ClosureType {
     /**
      * A closure that can be used in custom {@link Panel} implementations.
      */
+    @SuppressWarnings("unused")
     CUSTOM
 }

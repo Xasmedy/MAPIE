@@ -10,6 +10,7 @@ package xasmedy.mapie.menu;
 
 import xasmedy.mapie.menu.function.CloseListener;
 
+@SuppressWarnings("unused")
 public interface Template {
 
     int menuId();

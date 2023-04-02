@@ -10,6 +10,7 @@ package xasmedy.mapie.menu;
 
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 public record UnmodifiableButton(String label, Runnable listener) implements Button {
 
     public UnmodifiableButton {

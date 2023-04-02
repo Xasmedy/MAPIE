@@ -113,18 +113,12 @@ public class ButtonsLayout<T extends Button> implements ButtonParser {
     public T get(int option) throws NoSuchElementException {
 
         for (int column = 0, i = 0; column < buttons.size(); column++) {
-
-            // TODO Implement the isHidden feature.
             final ArrayList<T> rowButtons = buttons.get(column);
-
-            // In case the option is not at this row I go to the next one.
-            if (i + rowButtons.size() <= option) {
-                // I increment this here to avoid problems in case the if statement is false.
-                i += rowButtons.size();
-                continue;
+            for (final T button : rowButtons) {
+                if (button.isHidden()) continue; // I ignore hidden buttons since the client has no idea of those.
+                if (i == option) return button; // In case I reached the wanted button.
+                i++;
             }
-            // I get how many rows are left aka the index.
-            return rowButtons.get(option - i);
         }
         throw new NoSuchElementException("Option not found: " + option); // This should never happen.
     }
