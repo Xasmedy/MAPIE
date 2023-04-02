@@ -8,15 +8,13 @@
 
 package xasmedy.mapie.menu;
 
-import xasmedy.mapie.menu.entity.Button;
-import xasmedy.mapie.menu.entity.ButtonList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
 @SuppressWarnings("unused")
-public final class ButtonListImpl implements ButtonList {
+public final class ButtonListImpl implements ButtonGroup {
 
     private final ArrayList<ArrayList<Button>> buttons = new ArrayList<>();
 
@@ -113,7 +111,7 @@ public final class ButtonListImpl implements ButtonList {
     public String[][] asMindustryOptions() {
 
         final Function<ArrayList<Button>, String[]> rowMap = row -> row.stream()
-                .map(Button::getLabel)
+                .map(Button::label)
                 .toArray(String[]::new);
 
         return buttons.stream()

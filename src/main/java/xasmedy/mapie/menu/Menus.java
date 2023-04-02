@@ -14,9 +14,6 @@ import mindustry.game.EventType;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
-import xasmedy.mapie.menu.entity.Button;
-import xasmedy.mapie.menu.entity.ClosureType;
-import xasmedy.mapie.menu.entity.MenuTemplate;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -66,18 +63,18 @@ public final class Menus {
             return;
         }
 
-        final Button button = menu.getCurrentTemplate()
-                .getButtonList()
+        final Button button = menu.getTemplate()
+                .buttons()
                 .getMindustryOption(option);
 
         // I reload myself, making it look like nothing happen.
         if (button.isDisabled()) menu.update();
-        else button.getListener().ifPresent(listener -> listener.action(menu));
+        else button.listener().action(menu);
     }
 
     void closeActiveMenu(MenuPanel menu, ClosureType type) {
         playersMenu.remove(menu.getPlayer());
-        menu.getCurrentTemplate()
+        menu.getTemplate()
                 .getCloseListener()
                 .ifPresent(listener -> listener.action(menu, type));
     }
@@ -90,7 +87,7 @@ public final class Menus {
     public void forceMenuClose(Player player) {
         final MenuPanel menu = playersMenu.get(player);
         if (menu == null) return;
-        Call.menuChoose(player, menu.getCurrentTemplate().getId(), FORCE_CLOSE_ID);
+        Call.menuChoose(player, menu.getTemplate().getId(), FORCE_CLOSE_ID);
     }
 
     public void displayMenu(Player player, MenuTemplate template) {
@@ -106,17 +103,5 @@ public final class Menus {
 
     public Function<Integer, MenuTemplate> getDefaultTemplateConstructor() {
         return TEMPLATE_CONSTRUCTOR;
-    }
-
-    public Button newDefaultButton(String label, boolean disabled) {
-        return new ButtonImpl(label, disabled);
-    }
-
-    public Button newDefaultButton(String label) {
-        return newDefaultButton(label, false);
-    }
-
-    public Button newDefaultButton() {
-        return newDefaultButton("", false);
     }
 }

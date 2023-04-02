@@ -5,7 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Configuring JitPack.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/UnmodifiableButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/SimpleButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonListImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuTemplateImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuTemplateImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/ButtonList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/ButtonTriggerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonTriggerListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/CloseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/CloseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/ClosureType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ClosureType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/entity/MenuTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,9 +33,17 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MAPIE" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -33,8 +54,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -64,7 +85,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/xasmedy/Desktop/Mindustry-142",
+    "last_opened_file_path": "/home/xasmedy/IdeaProjects/MAPIE",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",

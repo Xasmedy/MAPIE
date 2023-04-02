@@ -6,16 +6,16 @@
  * Contributors of this file may put their name into the copyright notice.
  */
 
-package xasmedy.mapie.menu.entity;
+package xasmedy.mapie.menu;
 
 import java.util.NoSuchElementException;
 
-public interface ButtonList {
+public interface ButtonGroup {
 
     /**
      * Copies the buttons over a new list.
      */
-    ButtonList copy();
+    ButtonGroup copy();
 
     int columnSize();
 

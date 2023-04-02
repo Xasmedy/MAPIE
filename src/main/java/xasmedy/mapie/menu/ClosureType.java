@@ -6,7 +6,7 @@
  * Contributors of this file may put their name into the copyright notice.
  */
 
-package xasmedy.mapie.menu.entity;
+package xasmedy.mapie.menu;
 
 public enum ClosureType {
     PLAYER_LEAVE,

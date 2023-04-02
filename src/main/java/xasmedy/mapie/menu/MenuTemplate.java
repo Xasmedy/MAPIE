@@ -6,7 +6,7 @@
  * Contributors of this file may put their name into the copyright notice.
  */
 
-package xasmedy.mapie.menu.entity;
+package xasmedy.mapie.menu;
 
 import java.util.Optional;
 
@@ -18,7 +18,7 @@ public interface MenuTemplate {
 
     MenuTemplate makeSubMenu(MenuTemplate father);
 
-    ButtonList getButtonList();
+    ButtonGroup buttons();
 
     void setTitle(String title);
 

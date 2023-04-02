@@ -10,8 +10,6 @@ package xasmedy.mapie.menu;
 
 import mindustry.gen.Call;
 import mindustry.gen.Player;
-import xasmedy.mapie.menu.entity.ClosureType;
-import xasmedy.mapie.menu.entity.MenuTemplate;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -20,6 +18,7 @@ import java.util.Objects;
  */
 public final class MenuPanel {
 
+    // TODO Make first the most recent?
     /**
      * Keeps track of the previously selected menus.<br>
      * The first element is always the father menu.
@@ -38,10 +37,10 @@ public final class MenuPanel {
         this.menus = menus;
         this.player = player;
         this.current = current;
-        setCopyIfEnabled();
+        copyIfEnabled();
     }
 
-    private void setCopyIfEnabled() {
+    private void copyIfEnabled() {
         // User defined, so it could be null.
         // Checking it here is better than having it be called at some random point in the program.
         this.currentCopy = current.shouldResetOnContextChange() ? Objects.requireNonNull(current.copy()) : null;
@@ -54,9 +53,9 @@ public final class MenuPanel {
     }
 
     public void update() {
-        setCopyIfEnabled();
-        final String[][] options = current.getButtonList().asMindustryOptions();
-        Call.menu(player.con(), current.getId(), current.getTitle(), current.getMessage(), options);
+        copyIfEnabled();
+        final String[][] options = current.buttons().asMindustryOptions();
+        Call.followUpMenu(player.con(), current.getId(), current.getTitle(), current.getMessage(), options);
     }
 
     public void displayFromTopMenus(int index) {
@@ -89,7 +88,7 @@ public final class MenuPanel {
         return player;
     }
 
-    public MenuTemplate getCurrentTemplate() {
+    public MenuTemplate getTemplate() {
         return current;
     }
 

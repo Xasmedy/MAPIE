@@ -6,9 +6,7 @@
  * Contributors of this file may put their name into the copyright notice.
  */
 
-package xasmedy.mapie.menu.entity;
-
-import xasmedy.mapie.menu.MenuPanel;
+package xasmedy.mapie.menu;
 
 @FunctionalInterface
 public interface CloseListener {

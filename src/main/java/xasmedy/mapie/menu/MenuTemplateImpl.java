@@ -8,8 +8,6 @@
 
 package xasmedy.mapie.menu;
 
-import xasmedy.mapie.menu.entity.CloseListener;
-import xasmedy.mapie.menu.entity.MenuTemplate;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -52,7 +50,7 @@ final class MenuTemplateImpl implements MenuTemplate {
     }
 
     @Override
-    public ButtonListImpl getButtonList() {
+    public ButtonListImpl buttons() {
         return buttons;
     }
 
@@ -76,6 +74,7 @@ final class MenuTemplateImpl implements MenuTemplate {
         this.closeListener = closeListener;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
