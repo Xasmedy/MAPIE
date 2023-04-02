@@ -9,8 +9,16 @@
 package xasmedy.mapie.menu;
 
 public enum ClosureType {
+    /**
+     * When a player leaves the server.
+     */
     PLAYER_LEAVE,
+    /**
+     * When the player closes the menu via Esc (on PC) or by taping outside the menu (Mobile)
+     */
     LOST_FOCUS,
-    BY_BUTTON,
-    FORCED
+    /**
+     * When the menu has been closed by a {@link Panel} implementation.
+     */
+    BY_PANEL
 }

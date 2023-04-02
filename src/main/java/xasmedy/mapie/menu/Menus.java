@@ -22,65 +22,54 @@ import java.util.function.Function;
 public final class Menus {
 
     private static final AtomicBoolean INSTANCIED = new AtomicBoolean(false);
-    @Deprecated
-    private static final int FORCE_CLOSE_ID = -2;
+    /**
+     * Mindustry default closure when a player selects no option.
+     */
+    private static final int DEFAULT_CLOSURE = -1;
+    /**
+     * Used when closed via {@link Call#menuChoose} by a {@link Panel}.
+     */
+    private static final int REMOTE_CLOSURE = -2;
 
     /**
      * Only one menu per player. (I don't see a reason to have more than one)
      */
-    private final HashMap<Player, MenuPanel> playersMenu = new HashMap<>();
+    private final HashMap<Player, Panel> playersMenu = new HashMap<>();
 
     public Menus() {
 
         if (INSTANCIED.getAndSet(true)) throw new IllegalStateException("Cannot instantiate singleton.");
 
         Events.on(EventType.PlayerLeave.class, e -> {
-            final MenuPanel menu = playersMenu.get(e.player);
-            if (menu == null) return;
-            closeActiveMenu(menu, ClosureType.PLAYER_LEAVE);
+            final Panel panel = playersMenu.get(e.player);
+            if (panel == null) return;
+            closePanel(panel, ClosureType.PLAYER_LEAVE);
         });
     }
 
     private void handleMenuAction(int menuId, Player player, int option) {
 
-        final MenuPanel menu = playersMenu.get(player);
-        // The menu has been closed badly by the player.
-        if (menu == null) {
-            Log.debug("Bad menu closure for player \"" + player.uuid() + "\"");
+        final Panel panel = playersMenu.get(player);
+        // Modified Mindustry version. (Call.menuChoose without having a dialog)
+        // This can also happen when a panel is used after being closed.
+        if (panel == null) {
+            Log.debug("Modified client for player \"" + player.ip() + "\" or bad panel usage.");
             return;
         }
 
-        // When the player exits the menu by using other means.
-        // e.g. clicking outside the menu, pressing esc.
-        if (option == -1) {
-            closeActiveMenu(menu, ClosureType.LOST_FOCUS);
-            return;
+        switch (option) {
+            case DEFAULT_CLOSURE -> closePanel(panel, ClosureType.LOST_FOCUS);
+            case REMOTE_CLOSURE -> closePanel(panel, ClosureType.BY_PANEL);
+            default -> panel.selectionEvent(panel.template().parser().get(option));
         }
-
-        // TODO Remove.
-        // Custom closure type that indicates that the menu has been closed by force.
-        if (option == FORCE_CLOSE_ID) {
-            closeActiveMenu(menu, ClosureType.FORCED);
-            return;
-        }
-
-        final Button button = menu.getTemplate()
-                .parser()
-                .get(option);
-
-        // I reload myself, making it look like nothing happen.
-        if (button.isDisabled()) menu.update();
-        else button.listener().action(menu, button);
     }
 
-    void closeActiveMenu(MenuPanel menu, ClosureType type) {
-        playersMenu.remove(menu.getPlayer());
-        menu.getTemplate()
-                .closeListener()
-                .action(menu, type);
+    void closePanel(Panel panel, ClosureType type) {
+        playersMenu.remove(panel.player());
+        panel.template().closeListener().action(type);
     }
 
-    public <T extends MenuTemplate> T registerNewMenu(Function<Integer, T> constructor) {
+    public <T extends Template> T registerNewMenu(Function<Integer, T> constructor) {
 
         Objects.requireNonNull(constructor);
 
@@ -92,20 +81,14 @@ public final class Menus {
         return constructor.apply(registeredId);
     }
 
-    public void forceMenuClose(Player player) {
-        final MenuPanel menu = playersMenu.get(player);
-        if (menu == null) return;
-        Call.menuChoose(player, menu.getTemplate().menuId(), FORCE_CLOSE_ID);
-    }
-
-    public void displayMenu(Player player, MenuTemplate template) {
+    public void displayMenu(Player player, Template template) {
 
         Objects.requireNonNull(player);
         Objects.requireNonNull(template);
 
         // I get a copy to avoid unwanted changes during the menu life.
-        final MenuPanel menuPanel = new MenuPanel(this, player, template);
-        playersMenu.put(player, menuPanel);
-        menuPanel.update(); // I display the menu.
+        final FollowUpPanel<?> panel = new FollowUpPanel<>(this, player, template);
+        playersMenu.put(player, panel);
+        panel.update(); // I display the menu.
     }
 }

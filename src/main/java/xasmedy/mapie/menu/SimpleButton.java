@@ -12,23 +12,28 @@ import java.util.Objects;
 
 public final class SimpleButton implements Button {
 
-    private static final ButtonTriggerListener DEFAULT_LISTENER = (menu, myself) -> {};
-    private ButtonTriggerListener listener = DEFAULT_LISTENER;
+    private static final Runnable DEFAULT_LISTENER = () -> {};
+    private Runnable listener = DEFAULT_LISTENER;
     private String label;
     private boolean disabled;
     private boolean hidden;
 
-    public SimpleButton(String label, boolean disabled) {
+    public SimpleButton(String label, boolean disabled, boolean hidden) {
         this.label = Objects.requireNonNull(label);
         this.disabled = disabled;
+        this.hidden = hidden;
+    }
+
+    public SimpleButton(String label, boolean disabled) {
+        this(label, disabled, false);
     }
 
     public SimpleButton(String label) {
-        this(label, false);
+        this(label, false, false);
     }
 
     public SimpleButton() {
-        this("", false);
+        this("", false, false);
     }
 
     @Override
@@ -47,7 +52,7 @@ public final class SimpleButton implements Button {
     }
 
     @Override
-    public ButtonTriggerListener listener() {
+    public Runnable listener() {
         return listener;
     }
 
@@ -67,7 +72,7 @@ public final class SimpleButton implements Button {
     }
 
     @Override
-    public void listener(ButtonTriggerListener listener) {
+    public void listener(Runnable listener) {
         this.listener = Objects.requireNonNull(listener);
     }
 }

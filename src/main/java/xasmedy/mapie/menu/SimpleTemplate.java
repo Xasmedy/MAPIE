@@ -8,18 +8,19 @@
 
 package xasmedy.mapie.menu;
 
+import xasmedy.mapie.menu.function.CloseListener;
 import java.util.Objects;
 
-public final class SimpleMenuTemplate implements MenuTemplate {
+public class SimpleTemplate implements Template {
 
-    private static final CloseListener DEFAULT_LISTENER = (menu, type) -> {};
-    private final ButtonParser parser;
+    private static final CloseListener DEFAULT_LISTENER = (closureType) -> {};
     private final int menuId;
+    private final ButtonParser parser;
     private String title = "";
     private String message = "";
     private CloseListener closeListener = DEFAULT_LISTENER;
 
-    public SimpleMenuTemplate(int menuId, ButtonParser parser) {
+    public SimpleTemplate(int menuId, ButtonParser parser) {
         this.menuId = menuId;
         this.parser = Objects.requireNonNull(parser);
     }

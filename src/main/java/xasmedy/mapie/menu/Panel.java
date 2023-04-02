@@ -8,7 +8,20 @@
 
 package xasmedy.mapie.menu;
 
-@FunctionalInterface
-public interface ButtonTriggerListener {
-    void action(MenuPanel menu, Button myself);
+import mindustry.gen.Player;
+
+/**
+ * The Panel the player is currently seeing.
+ */
+public interface Panel {
+
+    Player player();
+
+    Template template();
+
+    void update();
+
+    void selectionEvent(Button onButton);
+
+    void close();
 }

@@ -4,19 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Updated to v143, refactored, and new Button implementation.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/SimpleMenuTemplate.java" afterDir="false" />
+    <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Refactored.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Panel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/UnmodifiableTemplate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonsLayout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonListImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonTriggerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonTriggerListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuTemplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuTemplateImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ButtonTriggerListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/CloseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/function/CloseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ClosureType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ClosureType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/FollowUpPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/MenuTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Template.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/SimpleButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/SimpleButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/SimpleMenuTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/SimpleTemplate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/UnmodifiableButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/UnmodifiableButton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -269,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680439254268</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Refactored.">
+      <created>1680450818609</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1680450818609</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -295,7 +302,8 @@
     <MESSAGE value="Now the menu will be displayed when created." />
     <MESSAGE value="Configuring JitPack." />
     <MESSAGE value="Updated to v143, refactored, and new Button implementation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated to v143, refactored, and new Button implementation." />
+    <MESSAGE value="Refactored." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

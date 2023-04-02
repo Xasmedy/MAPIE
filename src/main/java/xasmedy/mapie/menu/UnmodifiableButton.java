@@ -10,7 +10,7 @@ package xasmedy.mapie.menu;
 
 import java.util.Objects;
 
-public record UnmodifiableButton(String label, ButtonTriggerListener listener) implements Button {
+public record UnmodifiableButton(String label, Runnable listener) implements Button {
 
     public UnmodifiableButton {
         Objects.requireNonNull(label);
@@ -43,7 +43,7 @@ public record UnmodifiableButton(String label, ButtonTriggerListener listener) i
     }
 
     @Override
-    public void listener(ButtonTriggerListener listener) throws UnsupportedOperationException {
+    public void listener(Runnable listener) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 }

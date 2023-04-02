@@ -8,7 +8,9 @@
 
 package xasmedy.mapie.menu;
 
-public interface MenuTemplate {
+import xasmedy.mapie.menu.function.CloseListener;
+
+public interface Template {
 
     int menuId();
 

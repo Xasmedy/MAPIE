@@ -20,7 +20,7 @@ public interface Button {
         return !isHidden();
     }
 
-    ButtonTriggerListener listener();
+    Runnable listener();
 
     /**
      * Modifies the current label with a new one.
@@ -42,5 +42,5 @@ public interface Button {
      * Changes the button action when clicked.
      * @throws NullPointerException when a null listener is provided.
      */
-    void listener(ButtonTriggerListener listener) throws NullPointerException;
+    void listener(Runnable listener) throws NullPointerException;
 }
