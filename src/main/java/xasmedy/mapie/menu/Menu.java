@@ -16,12 +16,11 @@ import mindustry.gen.Player;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
 public final class Menu {
 
-    private static final AtomicBoolean INSTANCIED = new AtomicBoolean(false);
+    private static final AtomicBoolean IS_INSTANCIED = new AtomicBoolean(false);
     /**
      * Mindustry default closure when a player selects no option.
      */
@@ -34,11 +33,11 @@ public final class Menu {
     /**
      * Only one menu per player. (I don't see a reason to have more than one)
      */
-    private final HashMap<Player, Panel> playersMenu = new HashMap<>();
+    private final HashMap<Player, Panel> playersMenu = new HashMap<>(); // I don't save the menuId since it is variable.
 
     public Menu() {
 
-        if (INSTANCIED.getAndSet(true)) throw new IllegalStateException("Cannot instantiate singleton.");
+        if (IS_INSTANCIED.getAndSet(true)) throw new IllegalStateException("Cannot instantiate singleton.");
 
         Events.on(EventType.PlayerLeave.class, e -> {
             final Panel panel = playersMenu.get(e.player);
@@ -47,7 +46,7 @@ public final class Menu {
         });
     }
 
-    private void handleMenuAction(int menuId, Player player, int option) {
+    private void handleMenuAction(Player player, int option) {
 
         final Panel panel = playersMenu.get(player);
         // Modified Mindustry version. (Call.menuChoose without having a dialog)
@@ -64,16 +63,13 @@ public final class Menu {
         }
     }
 
-    public <T extends Template> T registerNewMenu(Function<Integer, T> constructor) {
-
+    @SuppressWarnings("unused")
+    public <T extends Template> T register(Function<Integer, T> constructor) {
+        // I check before registering, else the user would have no way to access the menuId, wasting memory.
         Objects.requireNonNull(constructor);
-
-        // set() will always be called before get().
-        final AtomicInteger menuId = new AtomicInteger(-1);
-        final int registeredId = mindustry.ui.Menus.registerMenu((Player player, int option) -> handleMenuAction(menuId.get(), player, option));
-        menuId.set(registeredId);
+        final int id = mindustry.ui.Menus.registerMenu(this::handleMenuAction);
         // I create the user-defined MenuTemplate.
-        return constructor.apply(registeredId);
+        return constructor.apply(id);
     }
 
     /**

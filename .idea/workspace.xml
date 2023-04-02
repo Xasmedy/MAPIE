@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Ton of changes.&#10;- New UnmodifiableTemplate implementations. &#10;- More refactoring.&#10;- More interfaces and generalization, meaning more user-side customization.&#10;- More and updated docs.&#10;Closer to release. :eyes:">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/MAPIE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/MAPIE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/MAPIEImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ClosureType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/ClosureType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/FollowUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/FollowUpPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xasmedy/mapie/menu/Menu.java" afterDir="false" />
-    </list>
+    <list default="true" id="fb64b2a1-5037-4896-b5b1-61eef4f13c25" name="Changes" comment="Ton of changes.&#10;- New UnmodifiableTemplate implementations. &#10;- More refactoring.&#10;- More interfaces and generalization, meaning more user-side customization.&#10;- More and updated docs.&#10;Closer to release. :eyes:" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
