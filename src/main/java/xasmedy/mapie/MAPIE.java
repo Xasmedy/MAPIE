@@ -44,9 +44,17 @@ public final class MAPIE {
         return clientCommands;
     }
 
+    public CommandRepository clientCommands() {
+        return clientCommands;
+    }
+
     public synchronized CommandRepository serverCommands(CommandHandler serverHandler) {
         Objects.requireNonNull(serverHandler);
         if (serverCommands == null) serverCommands = new CommandRepository(serverHandler);
+        return serverCommands;
+    }
+
+    public CommandRepository serverCommands() {
         return serverCommands;
     }
 }
