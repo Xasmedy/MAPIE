@@ -19,8 +19,8 @@ public final class MAPIE {
 
     private static MAPIE singleton;
 
-    private CommandRepository clientCommands;
-    private CommandRepository serverCommands;
+    private volatile CommandRepository clientCommands;
+    private volatile CommandRepository serverCommands;
     public final ChatIcons chatIcons;
     public final Menu menu;
 
@@ -38,9 +38,11 @@ public final class MAPIE {
         return singleton;
     }
 
-    public synchronized CommandRepository clientCommands(CommandHandler clientHandler) {
+    public CommandRepository createClientCommands(CommandHandler clientHandler) {
         Objects.requireNonNull(clientHandler);
-        if (clientCommands == null) clientCommands = new CommandRepository(clientHandler);
+        synchronized (this) {
+            if (clientCommands == null) clientCommands = new CommandRepository(clientHandler);
+        }
         return clientCommands;
     }
 
@@ -48,9 +50,11 @@ public final class MAPIE {
         return clientCommands;
     }
 
-    public synchronized CommandRepository serverCommands(CommandHandler serverHandler) {
+    public CommandRepository createServerCommands(CommandHandler serverHandler) {
         Objects.requireNonNull(serverHandler);
-        if (serverCommands == null) serverCommands = new CommandRepository(serverHandler);
+        synchronized (this) {
+            if (serverCommands == null) serverCommands = new CommandRepository(serverHandler);
+        }
         return serverCommands;
     }
 
