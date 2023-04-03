@@ -23,15 +23,18 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public final class ChatIcons {
 
-    private static final AtomicBoolean INSTANCIED = new AtomicBoolean(false);
     private static final String FILE_NAME = "icons.properties";
     private static final String ICONS_FILE_LINK = "https://raw.githubusercontent.com/Anuken/Mindustry/master/core/assets/icons/" + FILE_NAME;
+    private static ChatIcons instance;
     private final AtomicBoolean areIconsLoaded = new AtomicBoolean(false);
     private final ObjectMap<String, String> STRING_ICONS = new ObjectMap<>();
     private final ObjectIntMap<String> UNICODE_ICONS = new ObjectIntMap<>();
 
-    public ChatIcons() {
-        if (INSTANCIED.getAndSet(true)) throw new IllegalStateException("Cannot instantiate singleton.");
+    private ChatIcons() {}
+
+    public static ChatIcons get() {
+        if (instance == null) instance = new ChatIcons();
+        return instance;
     }
 
     private void setIconsFromSource(InputStream source) {

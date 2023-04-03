@@ -13,15 +13,14 @@ import arc.util.Log;
 import mindustry.game.EventType;
 import mindustry.gen.Call;
 import mindustry.gen.Player;
+import mindustry.mod.Plugin;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 
 public final class Menu {
 
-    private static final AtomicBoolean IS_INSTANCIED = new AtomicBoolean(false);
     /**
      * Mindustry default closure when a player selects no option.
      */
@@ -31,20 +30,29 @@ public final class Menu {
      */
     private static final int REMOTE_CLOSURE = -2;
 
+    private static Menu instance;
+
     /**
      * Only one menu per player. (I don't see a reason to have more than one)
      */
     private final HashMap<Player, Panel> playersMenu = new HashMap<>(); // I don't save the menuId since it is variable.
 
-    public Menu() {
+    private Menu() {}
 
-        if (IS_INSTANCIED.getAndSet(true)) throw new IllegalStateException("Cannot instantiate singleton.");
+    /**
+     * Must be called during {@link Plugin#init()}.
+     */
+    public static Menu init() {
+
+        if (instance != null) return instance;
+        else instance = new Menu();
 
         Events.on(EventType.PlayerLeave.class, e -> {
-            final Panel panel = playersMenu.get(e.player);
+            final Panel panel = instance.playersMenu.get(e.player);
             if (panel == null) return;
-            removePanel(panel, ClosureType.PLAYER_LEAVE);
+            instance.removePanel(panel, ClosureType.PLAYER_LEAVE);
         });
+        return instance;
     }
 
     private void handleMenuAction(Player player, int option) {

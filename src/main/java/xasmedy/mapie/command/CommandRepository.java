@@ -11,7 +11,6 @@ package xasmedy.mapie.command;
 import arc.util.CommandHandler;
 import mindustry.gen.Player;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.Consumer;
 
@@ -23,11 +22,6 @@ public class CommandRepository {
 
     protected final HashMap<String, Command> commands = new HashMap<>();
     protected final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-    protected final CommandHandler handler;
-
-    public CommandRepository(CommandHandler handler) {
-        this.handler = Objects.requireNonNull(handler);
-    }
 
     protected void commandCaller(Command command, String[] args, Player player) {
 
@@ -39,7 +33,7 @@ public class CommandRepository {
         else command.noPermissionsAction(player, args);
     }
 
-    public void addCommand(Command command) {
+    public void add(Command command) {
         final var writeLock = lock.writeLock();
         try {
             writeLock.lock();
@@ -49,7 +43,7 @@ public class CommandRepository {
         }
     }
 
-    public Command removeCommand(String name) {
+    public Command remove(String name) {
         final var writeLock = lock.writeLock();
         try {
             writeLock.lock();
@@ -59,7 +53,7 @@ public class CommandRepository {
         }
     }
 
-    public Command getCommand(String name) {
+    public Command get(String name) {
         final var readLock = lock.readLock();
         try {
             readLock.lock();
@@ -79,7 +73,7 @@ public class CommandRepository {
         }
     }
 
-    public void reloadCommands() {
+    public void reload(CommandHandler handler) {
         final var writeLock = lock.writeLock();
         try {
             writeLock.lock();

@@ -39,7 +39,7 @@ public interface Command {
 
     void noPermissionsAction(Player player, String[] args);
 
-    void serverAction(String[] args);
+    default void serverAction(String[] args) {}
 
-    boolean hide(boolean hidden);
+    void hide(boolean hidden);
 }
