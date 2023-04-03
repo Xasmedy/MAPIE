@@ -9,7 +9,7 @@ repositories {
 }
 
 group = 'com.github.Xasmedy'
-version = 'v1.0'
+version = 'v1.0.1'
 
 ext {
     mindustry = 'v143'

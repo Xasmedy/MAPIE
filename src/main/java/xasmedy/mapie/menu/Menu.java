@@ -14,6 +14,7 @@ import mindustry.game.EventType;
 import mindustry.gen.Call;
 import mindustry.gen.Player;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
@@ -52,14 +53,25 @@ public final class Menu {
         // Modified Mindustry version. (Call.menuChoose without having a dialog)
         // This can also happen when a panel is used after being closed.
         if (panel == null) {
-            Log.debug("Modified client for player \"" + player.ip() + "\" or bad panel usage.");
+            Log.debug("Modified client for player \"" + player.plainName() + "\" / \"" + player.ip() + "\" or bad panel usage.");
             return;
         }
 
         switch (option) {
             case DEFAULT_CLOSURE -> removePanel(panel, ClosureType.LOST_FOCUS);
             case REMOTE_CLOSURE -> removePanel(panel, ClosureType.BY_PANEL);
-            default -> panel.selectionEvent(panel.template().parser().get(option));
+            default -> {
+                final Button button;
+                try {
+                    // I avoid modified clients picking an option that does not exist.
+                    button = panel.template().parser().get(option);
+                } catch (NoSuchElementException ignored) {
+                    // This might also happen in case the player spam clicks buttons.
+                    Log.debug("Modified client by: \"" + player.plainName() + "\" / \"" + player.ip() + "\" or button spamming.");
+                    return;
+                }
+                panel.selectionEvent(button);
+            }
         }
     }
 
