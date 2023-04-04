@@ -9,17 +9,26 @@
 package xasmedy.mapie.command;
 
 import mindustry.gen.Player;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 public interface Command {
 
+    // No roles required.
+    Set<Integer> DEFAULT_PERMISSIONS = Collections.unmodifiableSet(new HashSet<>());
+
     String name();
 
-    String params();
+    default String params() {
+        return "";
+    }
 
     String description();
 
-    boolean hidden();
+    default boolean hidden() {
+        return false;
+    }
 
     default boolean shown() {
         return !hidden();
@@ -28,18 +37,22 @@ public interface Command {
     /**
      * @return The roles required to execute this command if any.
      */
-    HashSet<Integer> rolesRequired();
+    default Set<Integer> rolesRequired() {
+        return DEFAULT_PERMISSIONS;
+    }
 
     /**
      * @return true if the player has the roles required to execute this command.
      */
-    boolean hasRequiredRoles(Player player);
+    boolean hasRequiredRoles(Player player, String[] args);
 
-    void action(Player player, String[] args);
+    default void action(Player player, String[] args) {}
 
-    void noPermissionsAction(Player player, String[] args);
+    default void noPermissionsAction(Player player, String[] args) {}
 
     default void serverAction(String[] args) {}
 
-    void hide(boolean hidden);
+    default void hide(boolean hidden) {
+        throw new UnsupportedOperationException();
+    }
 }

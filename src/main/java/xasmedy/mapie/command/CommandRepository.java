@@ -47,7 +47,7 @@ public class CommandRepository {
             command.serverAction(args);
             return;
         }
-        if (command.hasRequiredRoles(player)) command.action(player, args);
+        if (command.hasRequiredRoles(player, args)) command.action(player, args);
         else command.noPermissionsAction(player, args);
     }
 
