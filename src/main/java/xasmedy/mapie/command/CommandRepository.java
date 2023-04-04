@@ -23,10 +23,22 @@ public class CommandRepository {
 
     protected final HashMap<String, Command> commands = new HashMap<>();
     protected final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-    protected final CommandHandler handler;
+    protected CommandHandler handler;
 
     public CommandRepository(CommandHandler handler) {
         this.handler = Objects.requireNonNull(handler);
+    }
+
+    public CommandRepository() {}
+
+    public void handler(CommandHandler handler) {
+        Objects.requireNonNull(handler);
+        if (this.handler != null) throw new IllegalStateException("Handler already defined.");
+        this.handler = handler;
+    }
+
+    public CommandHandler handler() {
+        return handler;
     }
 
     protected void commandCaller(Command command, String[] args, Player player) {
