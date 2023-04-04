@@ -9,6 +9,7 @@
 package xasmedy.mapie.command;
 
 import arc.util.CommandHandler;
+import arc.util.Log;
 import mindustry.gen.Player;
 import java.util.HashMap;
 import java.util.Objects;
@@ -19,9 +20,10 @@ import java.util.function.Consumer;
  * Small Thread-Safe class where you can save commands.<br>
  * The retrieving of commands is concurrent, while the modifying is not.
  */
+@SuppressWarnings("unused")
 public class CommandRepository {
 
-    protected final HashMap<String, Command> commands = new HashMap<>();
+    protected final HashMap<String, AbstractCommand> commands = new HashMap<>();
     protected final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     protected CommandHandler handler;
 
@@ -41,17 +43,38 @@ public class CommandRepository {
         return handler;
     }
 
-    protected void commandCaller(Command command, String[] args, Player player) {
+    protected void commandCaller(AbstractCommand command, String[] args, Player player) {
 
-        if (player == null) {
-            command.serverAction(args);
-            return;
+        try {
+
+            // Null only when called by the server.
+            if (player == null) {
+
+                // If already initialised it does nothing, else it initialises.
+                if (!command.isInit.getAndSet(true)) command.init(true);
+
+                command.serverAction(args);
+                command.serverDispose(args);
+                return;
+            }
+
+            if (!command.hasRequiredRoles(player, args)) {
+                command.noPermissionsAction(player, args);
+                return;
+            }
+
+            // If already initialised it does nothing, else it initialises.
+            if (!command.isInit.getAndSet(true)) command.init(false);
+
+            command.clientAction(player, args);
+            command.clientDispose(player, args);
+
+        } catch(Exception e) {
+            Log.err("Exception inside the command: " + command.name(), e);
         }
-        if (command.hasRequiredRoles(player, args)) command.action(player, args);
-        else command.noPermissionsAction(player, args);
     }
 
-    private void registerToHandler(Command command) {
+    private void registerToHandler(AbstractCommand command) {
         Objects.requireNonNull(handler); // I throw an error in case the user is trying to register without handler.
         final CommandHandler.CommandRunner<Player> runner = (String[] args, Player player) -> commandCaller(command, args, player);
         handler.register(command.name(), command.params(), command.description(), runner);
@@ -62,7 +85,7 @@ public class CommandRepository {
         handler.removeCommand(name);
     }
 
-    public void add(Command command, boolean registerToHandler) {
+    public void add(AbstractCommand command, boolean registerToHandler) {
         final var writeLock = lock.writeLock();
         try {
             writeLock.lock();
@@ -73,11 +96,11 @@ public class CommandRepository {
         }
     }
 
-    public void add(Command command) {
+    public void add(AbstractCommand command) {
         add(command, true);
     }
 
-    public Command remove(String name, boolean removeFromHandler) {
+    public AbstractCommand remove(String name, boolean removeFromHandler) {
         final var writeLock = lock.writeLock();
         try {
             writeLock.lock();
@@ -88,11 +111,11 @@ public class CommandRepository {
         }
     }
 
-    public Command remove(String name) {
+    public AbstractCommand remove(String name) {
         return remove(name, true);
     }
 
-    public Command get(String name) {
+    public AbstractCommand get(String name) {
         final var readLock = lock.readLock();
         try {
             readLock.lock();
@@ -102,7 +125,7 @@ public class CommandRepository {
         }
     }
 
-    public void forEach(Consumer<Command> consumer) {
+    public void forEach(Consumer<AbstractCommand> consumer) {
         final var readLock = lock.readLock();
         try {
             readLock.lock();
@@ -120,7 +143,7 @@ public class CommandRepository {
             commands.values()
                     .stream()
                     .peek(command -> removeFromHandler(command.name()))
-                    .filter(Command::shown)
+                    .filter(AbstractCommand::shown)
                     .forEach(this::registerToHandler);
         } finally {
             writeLock.unlock();
