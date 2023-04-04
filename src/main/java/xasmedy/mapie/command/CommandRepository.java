@@ -51,24 +51,45 @@ public class CommandRepository {
         else command.noPermissionsAction(player, args);
     }
 
-    public void add(Command command) {
+    private void registerToHandler(Command command) {
+        Objects.requireNonNull(handler); // I throw an error in case the user is trying to register without handler.
+        final CommandHandler.CommandRunner<Player> runner = (String[] args, Player player) -> commandCaller(command, args, player);
+        handler.register(command.name(), command.params(), command.description(), runner);
+    }
+
+    private void removeFromHandler(String name) {
+        Objects.requireNonNull(handler); // I throw an error in case the user is trying to remove without a handler.
+        handler.removeCommand(name);
+    }
+
+    public void add(Command command, boolean registerToHandler) {
         final var writeLock = lock.writeLock();
         try {
             writeLock.lock();
+            if (registerToHandler) registerToHandler(command);
             commands.put(command.name(), command);
         } finally {
             writeLock.unlock();
         }
     }
 
-    public Command remove(String name) {
+    public void add(Command command) {
+        add(command, true);
+    }
+
+    public Command remove(String name, boolean removeFromHandler) {
         final var writeLock = lock.writeLock();
         try {
             writeLock.lock();
+            if (removeFromHandler) removeFromHandler(name);
             return commands.remove(name);
         } finally {
             writeLock.unlock();
         }
+    }
+
+    public Command remove(String name) {
+        return remove(name, true);
     }
 
     public Command get(String name) {
@@ -98,11 +119,9 @@ public class CommandRepository {
             // I remove previous commands.
             commands.values()
                     .stream()
-                    .peek(command -> handler.removeCommand(command.name()))
+                    .peek(command -> removeFromHandler(command.name()))
                     .filter(Command::shown)
-                    .forEach(command -> handler.register(
-                            command.name(), command.params(), command.description(),
-                            (String[] args, Player player) -> commandCaller(command, args, player)));
+                    .forEach(this::registerToHandler);
         } finally {
             writeLock.unlock();
         }
