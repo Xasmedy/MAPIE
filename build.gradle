@@ -26,3 +26,9 @@ publishing {
         }
     }
 }
+
+jar {
+    archivesBaseName = "MAPIE"
+    archiveVersion = ""
+    archiveAppendix = ""
+}
