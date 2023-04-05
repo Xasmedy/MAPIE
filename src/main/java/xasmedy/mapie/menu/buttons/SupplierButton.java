@@ -58,24 +58,24 @@ public class SupplierButton implements Button {
     }
 
     @Override
-    public Button label(String label) throws UnsupportedOperationException {
+    public SupplierButton label(String label) throws UnsupportedOperationException {
         throw new UnsupportedOperationException(); // The label is defined through supplier.
     }
 
     @Override
-    public Button disable(boolean disabled) {
+    public SupplierButton disable(boolean disabled) {
         this.disabled = disabled;
         return this;
     }
 
     @Override
-    public Button hide(boolean hidden) {
+    public SupplierButton hide(boolean hidden) {
         this.hidden = hidden;
         return this;
     }
 
     @Override
-    public Button listener(Runnable listener) throws NullPointerException {
+    public SupplierButton listener(Runnable listener) throws NullPointerException {
         this.listener = listener;
         return this;
     }
