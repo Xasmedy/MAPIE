@@ -27,7 +27,7 @@ public record UnmodifiableTemplate(int menuId, String title, String message, But
     }
 
     @Override
-    public Template closeListener(CloseListener listener) throws UnsupportedOperationException {
+    public Template closeListener(CloseListener closeListener) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 }

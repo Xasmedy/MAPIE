@@ -12,19 +12,25 @@ import xasmedy.mapie.menu.ButtonParser;
 import xasmedy.mapie.menu.Template;
 import xasmedy.mapie.menu.function.CloseListener;
 import java.util.Objects;
+import java.util.function.Supplier;
 
+/**
+ * An implementation that uses a supplier to get the title and message.
+ */
 @SuppressWarnings("unused")
-public class SimpleTemplate implements Template {
+public class SupplierTemplate implements Template {
 
     private final int menuId;
     private final ButtonParser parser;
-    private String title = "";
-    private String message = "";
+    private final Supplier<String> title;
+    private final Supplier<String> message;
     private CloseListener closeListener = DEFAULT_LISTENER;
 
-    public SimpleTemplate(int menuId, ButtonParser parser) {
+    public SupplierTemplate(int menuId, ButtonParser parser, Supplier<String> titleSupplier, Supplier<String> messageSupplier) {
         this.menuId = menuId;
         this.parser = Objects.requireNonNull(parser);
+        this.title = Objects.requireNonNull(titleSupplier);
+        this.message = Objects.requireNonNull(messageSupplier);
     }
 
     @Override
@@ -34,12 +40,12 @@ public class SimpleTemplate implements Template {
 
     @Override
     public String title() {
-        return title;
+        return Objects.requireNonNull(title.get());
     }
 
     @Override
     public String message() {
-        return message;
+        return Objects.requireNonNull(message.get());
     }
 
     @Override
@@ -48,19 +54,17 @@ public class SimpleTemplate implements Template {
     }
 
     @Override
-    public SimpleTemplate title(String title) {
-        this.title = Objects.requireNonNull(title);
-        return this;
+    public SupplierTemplate title(String title) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException(); // The title is defined through supplier.
     }
 
     @Override
-    public SimpleTemplate message(String message) {
-        this.message = Objects.requireNonNull(message);
-        return this;
+    public SupplierTemplate message(String message) throws NullPointerException {
+        throw new UnsupportedOperationException(); // The message is defined through supplier.
     }
 
     @Override
-    public SimpleTemplate closeListener(CloseListener closeListener) {
+    public SupplierTemplate closeListener(CloseListener closeListener) throws NullPointerException {
         this.closeListener = Objects.requireNonNull(closeListener);
         return this;
     }

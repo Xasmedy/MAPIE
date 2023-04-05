@@ -13,6 +13,8 @@ import xasmedy.mapie.menu.function.CloseListener;
 @SuppressWarnings("unused")
 public interface Template {
 
+    CloseListener DEFAULT_LISTENER = (closureType) -> {};
+
     int menuId();
 
     String title();
@@ -25,7 +27,7 @@ public interface Template {
 
     Template message(String message) throws NullPointerException;
 
-    Template closeListener(CloseListener listener) throws NullPointerException;
+    Template closeListener(CloseListener closeListener) throws NullPointerException;
 
     ButtonParser parser();
 }
