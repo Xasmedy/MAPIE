@@ -11,6 +11,8 @@ package xasmedy.mapie.menu;
 @SuppressWarnings("unused")
 public interface Button {
 
+    Runnable DEFAULT_LISTENER = () -> {};
+
     String label();
 
     boolean isDisabled();

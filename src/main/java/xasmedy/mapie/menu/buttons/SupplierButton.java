@@ -10,36 +10,36 @@ package xasmedy.mapie.menu.buttons;
 
 import xasmedy.mapie.menu.Button;
 import java.util.Objects;
+import java.util.function.Supplier;
 
+/**
+ * An implementation that uses a supplier to get the label.
+ */
 @SuppressWarnings("unused")
-public final class SimpleButton implements Button {
+public class SupplierButton implements Button {
 
+    private final Supplier<String> label;
     private Runnable listener = DEFAULT_LISTENER;
-    private String label;
     private boolean disabled;
     private boolean hidden;
 
-    public SimpleButton(String label, boolean disabled, boolean hidden) {
-        this.label = Objects.requireNonNull(label);
+    public SupplierButton(Supplier<String> labelSupplier, boolean disabled, boolean hidden) {
+        this.label = Objects.requireNonNull(labelSupplier);
         this.disabled = disabled;
         this.hidden = hidden;
     }
 
-    public SimpleButton(String label, boolean disabled) {
-        this(label, disabled, false);
+    public SupplierButton(Supplier<String> labelSupplier, boolean disabled) {
+        this(labelSupplier, disabled, false);
     }
 
-    public SimpleButton(String label) {
-        this(label, false, false);
-    }
-
-    public SimpleButton() {
-        this("", false, false);
+    public SupplierButton(Supplier<String> labelSupplier) {
+        this(labelSupplier, false, false);
     }
 
     @Override
     public String label() {
-        return label;
+        return Objects.requireNonNull(label.get());
     }
 
     @Override
@@ -58,26 +58,25 @@ public final class SimpleButton implements Button {
     }
 
     @Override
-    public SimpleButton label(String label) {
-        this.label = Objects.requireNonNull(label);
-        return this;
+    public Button label(String label) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException(); // The label is defined through supplier.
     }
 
     @Override
-    public SimpleButton disable(boolean disabled) {
+    public Button disable(boolean disabled) {
         this.disabled = disabled;
         return this;
     }
 
     @Override
-    public SimpleButton hide(boolean hidden) {
+    public Button hide(boolean hidden) {
         this.hidden = hidden;
         return this;
     }
 
     @Override
-    public SimpleButton listener(Runnable listener) {
-        this.listener = Objects.requireNonNull(listener);
+    public Button listener(Runnable listener) throws NullPointerException {
+        this.listener = listener;
         return this;
     }
 }
