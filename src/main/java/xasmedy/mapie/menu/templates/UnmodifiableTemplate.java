@@ -16,6 +16,10 @@ import xasmedy.mapie.menu.function.CloseListener;
 public record UnmodifiableTemplate(String title, String message, ButtonParser parser,
                                    CloseListener closeListener) implements Template {
 
+    public UnmodifiableTemplate(String title, String message, ButtonParser parser) {
+        this(title, message, parser, Template.DEFAULT_LISTENER);
+    }
+
     @Override
     public Template title(String title) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
