@@ -6,8 +6,9 @@
  * Contributors of this file may put their name into the copyright notice.
  */
 
-package xasmedy.mapie.menu;
+package xasmedy.mapie.menu.buttons;
 
+import xasmedy.mapie.menu.Button;
 import java.util.Objects;
 
 @SuppressWarnings("unused")

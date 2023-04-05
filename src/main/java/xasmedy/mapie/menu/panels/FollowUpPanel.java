@@ -6,11 +6,13 @@
  * Contributors of this file may put their name into the copyright notice.
  */
 
-package xasmedy.mapie.menu;
+package xasmedy.mapie.menu.panels;
 
 import mindustry.gen.Call;
 import mindustry.gen.Player;
+import xasmedy.mapie.menu.*;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 /**
  * Implementation using {@link Call#followUpMenu}.
@@ -19,10 +21,10 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public class FollowUpPanel<T extends Template> implements Panel {
 
-    private static final Runnable DEFAULT = () -> {};
+    private static final Consumer<Button> DEFAULT = button -> {};
     private final Menu menu;
     private final Player player;
-    private Runnable endAction = DEFAULT;
+    private Consumer<Button> endAction = DEFAULT;
     protected T current;
 
     public FollowUpPanel(Menu menu, Player player, T current) {
@@ -42,10 +44,11 @@ public class FollowUpPanel<T extends Template> implements Panel {
     }
 
     /**
-     * Sets an action to execute after a button is triggered.
+     * Sets an action to execute after a button is triggered.<br>
+     * This can be useful when some buttons share the same code.
      */
-    public void endAction(Runnable runnable) {
-       endAction = Objects.requireNonNull(runnable);
+    public void endAction(Consumer<Button> listener) {
+       endAction = Objects.requireNonNull(listener);
     }
 
     @Override
@@ -72,7 +75,7 @@ public class FollowUpPanel<T extends Template> implements Panel {
             return;
         }
         onButton.listener().run();
-        endAction.run();
+        endAction.accept(onButton);
     }
 
     @Override

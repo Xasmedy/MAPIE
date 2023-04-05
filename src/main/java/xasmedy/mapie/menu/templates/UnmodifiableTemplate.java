@@ -6,8 +6,10 @@
  * Contributors of this file may put their name into the copyright notice.
  */
 
-package xasmedy.mapie.menu;
+package xasmedy.mapie.menu.templates;
 
+import xasmedy.mapie.menu.ButtonParser;
+import xasmedy.mapie.menu.Template;
 import xasmedy.mapie.menu.function.CloseListener;
 
 @SuppressWarnings("unused")

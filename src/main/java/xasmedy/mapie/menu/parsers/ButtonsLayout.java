@@ -6,8 +6,10 @@
  * Contributors of this file may put their name into the copyright notice.
  */
 
-package xasmedy.mapie.menu;
+package xasmedy.mapie.menu.parsers;
 
+import xasmedy.mapie.menu.Button;
+import xasmedy.mapie.menu.ButtonParser;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
