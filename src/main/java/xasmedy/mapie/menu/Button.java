@@ -27,21 +27,21 @@ public interface Button {
      * Modifies the current label with a new one.
      * @throws NullPointerException when a null label is provided.
      */
-    void label(String label) throws NullPointerException;
+    Button label(String label) throws NullPointerException;
 
     /**
      * Disabled buttons will not have their listener called when clicked by the user.
      */
-    void disable(boolean disabled);
+    Button disable(boolean disabled);
 
     /**
      * Hidden buttons will not be visible by the user.
      */
-    void hide(boolean hidden);
+    Button hide(boolean hidden);
 
     /**
      * Changes the button action when clicked.
      * @throws NullPointerException when a null listener is provided.
      */
-    void listener(Runnable listener) throws NullPointerException;
+    Button listener(Runnable listener) throws NullPointerException;
 }

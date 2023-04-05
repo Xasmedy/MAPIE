@@ -16,8 +16,6 @@ import mindustry.gen.Player;
 import mindustry.mod.Plugin;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.function.Function;
 
 public final class Menu {
 
@@ -83,17 +81,19 @@ public final class Menu {
         }
     }
 
-    @SuppressWarnings("unused")
-    public <T extends Template> T register(Function<Integer, T> constructor) {
-        // I check before registering, else the user would have no way to access the menuId, wasting memory.
-        Objects.requireNonNull(constructor);
-        final int id = mindustry.ui.Menus.registerMenu(this::handleMenuAction);
-        // I create the user-defined MenuTemplate.
-        return constructor.apply(id);
+    /**
+     * Sets the panel that will receive mindustry listeners, overwriting the previous one if present.<br>
+     * This method should only be called by {@link Panel} implementations.
+     */
+    public void registerPanel(Player player, Panel panel) {
+        final Panel oldPanel = playersMenu.put(player, panel);
+        if (oldPanel == null) return;
+        // The old panel has been overwritten by a new panel.
+        oldPanel.template().closeListener().action(ClosureType.OVERWRITE);
     }
 
     /**
-     * Removes the panel but <strong>does NOT hide it</strong>  to the player!<br>
+     * Removes the panel but <strong>does NOT hide it</strong> to the player!<br>
      * ALWAYS use {@link Panel#close()} unless making a custom implementation.
      * @param panel The panel to remove.
      * @param type How this panel has been removed.
@@ -101,5 +101,13 @@ public final class Menu {
     public void removePanel(Panel panel, ClosureType type) {
         playersMenu.remove(panel.player());
         panel.template().closeListener().action(type);
+    }
+
+    /**
+     * @return The menuId.
+     */
+    @SuppressWarnings("unused")
+    public int register() {
+        return mindustry.ui.Menus.registerMenu(this::handleMenuAction);
     }
 }

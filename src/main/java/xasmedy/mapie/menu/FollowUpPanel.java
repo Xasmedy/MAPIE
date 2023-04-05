@@ -19,14 +19,17 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public class FollowUpPanel<T extends Template> implements Panel {
 
+    private static final Runnable DEFAULT = () -> {};
     private final Menu menu;
     private final Player player;
+    private Runnable endAction = DEFAULT;
     protected T current;
 
     public FollowUpPanel(Menu menu, Player player, T current) {
         this.menu = Objects.requireNonNull(menu);
         this.player = Objects.requireNonNull(player);
         this.current = Objects.requireNonNull(current);
+        menu.registerPanel(player, this);
     }
 
     /**
@@ -36,6 +39,13 @@ public class FollowUpPanel<T extends Template> implements Panel {
     public void display(T template) {
         this.current = Objects.requireNonNull(template);
         update();
+    }
+
+    /**
+     * Sets an action to execute after a button is triggered.
+     */
+    public void endAction(Runnable runnable) {
+       endAction = Objects.requireNonNull(runnable);
     }
 
     @Override
@@ -57,8 +67,12 @@ public class FollowUpPanel<T extends Template> implements Panel {
     @Override
     public void selectionEvent(Button onButton) {
         // I update myself making it look nothing happened.
-        if (onButton.isDisabled()) update();
-        else onButton.listener().run();
+        if (onButton.isDisabled()) {
+            update();
+            return;
+        }
+        onButton.listener().run();
+        endAction.run();
     }
 
     @Override

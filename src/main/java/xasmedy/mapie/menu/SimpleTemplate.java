@@ -47,18 +47,21 @@ public class SimpleTemplate implements Template {
     }
 
     @Override
-    public void title(String title) {
+    public SimpleTemplate title(String title) {
         this.title = Objects.requireNonNull(title);
+        return this;
     }
 
     @Override
-    public void message(String message) {
+    public SimpleTemplate message(String message) {
         this.message = Objects.requireNonNull(message);
+        return this;
     }
 
     @Override
-    public void closeListener(CloseListener closeListener) {
+    public SimpleTemplate closeListener(CloseListener closeListener) {
         this.closeListener = Objects.requireNonNull(closeListener);
+        return this;
     }
 
     @Override

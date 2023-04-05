@@ -15,17 +15,17 @@ public record UnmodifiableTemplate(int menuId, String title, String message, But
                                    CloseListener closeListener) implements Template {
 
     @Override
-    public void title(String title) throws UnsupportedOperationException {
+    public Template title(String title) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void message(String message) throws UnsupportedOperationException {
+    public Template message(String message) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void closeListener(CloseListener listener) throws UnsupportedOperationException {
+    public Template closeListener(CloseListener listener) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 }

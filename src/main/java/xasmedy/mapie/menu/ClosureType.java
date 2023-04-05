@@ -22,6 +22,10 @@ public enum ClosureType {
      */
     BY_PANEL,
     /**
+     * When the current panel has been overwritten by a new panel.
+     */
+    OVERWRITE,
+    /**
      * A closure that can be used in custom {@link Panel} implementations.
      */
     @SuppressWarnings("unused")

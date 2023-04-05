@@ -29,22 +29,22 @@ public record UnmodifiableButton(String label, Runnable listener) implements But
     }
 
     @Override
-    public void label(String label) throws UnsupportedOperationException {
+    public Button label(String label) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void disable(boolean disabled) throws UnsupportedOperationException {
+    public Button disable(boolean disabled) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void hide(boolean hidden) throws UnsupportedOperationException {
+    public Button hide(boolean hidden) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void listener(Runnable listener) throws UnsupportedOperationException {
+    public Button listener(Runnable listener) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 }

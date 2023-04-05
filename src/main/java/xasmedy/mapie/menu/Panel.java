@@ -11,7 +11,7 @@ package xasmedy.mapie.menu;
 import mindustry.gen.Player;
 
 /**
- * The Panel the player is currently seeing.
+ * The class that manages the player menu-interface.
  */
 public interface Panel {
 

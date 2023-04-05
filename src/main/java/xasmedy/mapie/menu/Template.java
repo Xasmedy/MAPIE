@@ -21,11 +21,11 @@ public interface Template {
 
     CloseListener closeListener();
 
-    void title(String title) throws NullPointerException;
+    Template title(String title) throws NullPointerException;
 
-    void message(String message) throws NullPointerException;
+    Template message(String message) throws NullPointerException;
 
-    void closeListener(CloseListener listener) throws NullPointerException;
+    Template closeListener(CloseListener listener) throws NullPointerException;
 
     ButtonParser parser();
 }

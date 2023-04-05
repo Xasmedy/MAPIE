@@ -58,22 +58,26 @@ public final class SimpleButton implements Button {
     }
 
     @Override
-    public void label(String label) {
+    public SimpleButton label(String label) {
         this.label = Objects.requireNonNull(label);
+        return this;
     }
 
     @Override
-    public void disable(boolean disabled) {
+    public SimpleButton disable(boolean disabled) {
         this.disabled = disabled;
+        return this;
     }
 
     @Override
-    public void hide(boolean hidden) {
+    public SimpleButton hide(boolean hidden) {
         this.hidden = hidden;
+        return this;
     }
 
     @Override
-    public void listener(Runnable listener) {
+    public SimpleButton listener(Runnable listener) {
         this.listener = Objects.requireNonNull(listener);
+        return this;
     }
 }
