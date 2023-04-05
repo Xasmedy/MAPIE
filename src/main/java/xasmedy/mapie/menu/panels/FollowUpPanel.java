@@ -64,7 +64,7 @@ public class FollowUpPanel<T extends Template> implements Panel {
     @Override
     public void update() {
         final String[][] options = current.parser().asString();
-        Call.followUpMenu(player.con(), current.menuId(), current.title(), current.message(), options);
+        Call.followUpMenu(player.con(), menu.menuId, current.title(), current.message(), options);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class FollowUpPanel<T extends Template> implements Panel {
 
     @Override
     public final void close() {
-        Call.hideFollowUpMenu(current.menuId());
+        Call.hideFollowUpMenu(menu.menuId);
         menu.removePanel(this, ClosureType.BY_PANEL);
     }
 }

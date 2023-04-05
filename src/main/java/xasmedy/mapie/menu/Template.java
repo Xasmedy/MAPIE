@@ -15,8 +15,6 @@ public interface Template {
 
     CloseListener DEFAULT_LISTENER = (closureType) -> {};
 
-    int menuId();
-
     String title();
 
     String message();

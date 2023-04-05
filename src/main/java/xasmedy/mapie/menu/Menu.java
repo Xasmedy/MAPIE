@@ -34,12 +34,14 @@ public final class Menu {
      * Only one menu per player. (I don't see a reason to have more than one)
      */
     private final HashMap<Player, Panel> playersMenu = new HashMap<>(); // I don't save the menuId since it is variable.
+    public final int menuId = mindustry.ui.Menus.registerMenu(this::handleMenuAction);
 
     private Menu() {}
 
     /**
      * Must be called during {@link Plugin#init()}.
      */
+    @SuppressWarnings("unused")
     public static Menu init() {
 
         if (instance != null) return instance;
@@ -101,13 +103,5 @@ public final class Menu {
     public void removePanel(Panel panel, ClosureType type) {
         playersMenu.remove(panel.player());
         panel.template().closeListener().action(type);
-    }
-
-    /**
-     * @return The menuId.
-     */
-    @SuppressWarnings("unused")
-    public int register() {
-        return mindustry.ui.Menus.registerMenu(this::handleMenuAction);
     }
 }

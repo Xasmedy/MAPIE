@@ -20,22 +20,15 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 public class SupplierTemplate implements Template {
 
-    private final int menuId;
     private final ButtonParser parser;
     private final Supplier<String> title;
     private final Supplier<String> message;
     private CloseListener closeListener = DEFAULT_LISTENER;
 
-    public SupplierTemplate(int menuId, ButtonParser parser, Supplier<String> titleSupplier, Supplier<String> messageSupplier) {
-        this.menuId = menuId;
+    public SupplierTemplate(ButtonParser parser, Supplier<String> titleSupplier, Supplier<String> messageSupplier) {
         this.parser = Objects.requireNonNull(parser);
         this.title = Objects.requireNonNull(titleSupplier);
         this.message = Objects.requireNonNull(messageSupplier);
-    }
-
-    @Override
-    public int menuId() {
-        return menuId;
     }
 
     @Override

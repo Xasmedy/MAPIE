@@ -13,7 +13,7 @@ import xasmedy.mapie.menu.Template;
 import xasmedy.mapie.menu.function.CloseListener;
 
 @SuppressWarnings("unused")
-public record UnmodifiableTemplate(int menuId, String title, String message, ButtonParser parser,
+public record UnmodifiableTemplate(String title, String message, ButtonParser parser,
                                    CloseListener closeListener) implements Template {
 
     @Override

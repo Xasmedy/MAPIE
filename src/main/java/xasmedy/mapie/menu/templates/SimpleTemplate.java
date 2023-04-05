@@ -16,20 +16,13 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public class SimpleTemplate implements Template {
 
-    private final int menuId;
     private final ButtonParser parser;
     private String title = "";
     private String message = "";
     private CloseListener closeListener = DEFAULT_LISTENER;
 
-    public SimpleTemplate(int menuId, ButtonParser parser) {
-        this.menuId = menuId;
+    public SimpleTemplate(ButtonParser parser) {
         this.parser = Objects.requireNonNull(parser);
-    }
-
-    @Override
-    public int menuId() {
-        return menuId;
     }
 
     @Override
