@@ -27,8 +27,8 @@ public class FollowUpPanel<T extends Template> implements Panel {
     private Consumer<Button> endAction = DEFAULT;
     protected T current;
 
-    public FollowUpPanel(Menu menu, Player player, T current) {
-        this.menu = Objects.requireNonNull(menu);
+    public FollowUpPanel(Player player, T current) {
+        this.menu = Menu.init();
         this.player = Objects.requireNonNull(player);
         this.current = Objects.requireNonNull(current);
         menu.registerPanel(player, this);
