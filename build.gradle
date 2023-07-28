@@ -12,7 +12,7 @@ group = 'com.github.Xasmedy'
 version = 'v1.1.1'
 
 ext {
-    mindustry = 'v145.1'
+    mindustry = 'v144.3'
 }
 
 dependencies {
