@@ -12,11 +12,11 @@ group = 'com.github.Xasmedy'
 version = 'v1.1.1'
 
 ext {
-    mindustry = 'v144.3'
+    mindustry = 'v145.1'
 }
 
 dependencies {
-    compileOnly("com.github.Anuken.Mindustry:core:${mindustry}")
+    implementation("com.github.Anuken.Mindustry:core:${mindustry}")
 }
 
 publishing {
