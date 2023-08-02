@@ -12,11 +12,18 @@ group = 'com.github.Xasmedy'
 version = 'v1.1.1'
 
 ext {
-    mindustry = 'v145.1'
+    arc = 'v145.1'
+    mindustry = 'v145'
 }
 
 dependencies {
-    implementation("com.github.Anuken.Mindustry:core:${mindustry}")
+    compileOnly("com.github.Anuken.Arc:arc-core:$arc")
+    compileOnly("com.github.Anuken.Arc:arcnet:$arc")
+    compileOnly("com.github.Anuken.Arc:flabel:$arc")
+    compileOnly("com.github.Anuken.Arc:fx:$arc")
+    compileOnly("com.github.Anuken.Arc:freetype:$arc")
+    compileOnly("com.github.Anuken.Arc:g3d:$arc")
+    compileOnly("com.github.Anuken.MindustryJitpack:core:$mindustry")
 }
 
 publishing {
